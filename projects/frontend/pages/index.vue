@@ -1,7 +1,7 @@
 <template>
   <div style="padding: 0px;margin:0px;">
   <canvas id="c"></canvas>
-  <home></home>
+  <home v-on:selectedradio="onRadioButton($event)"></home>
   </div>
 </template>
 
@@ -78,8 +78,13 @@ export default {
       }
     }
 
-    setInterval(draw, 35);
+    setInterval(draw, 33);
   },
+  methods: {
+    onRadioButton: function (selected) {
+      console.log(selected,',');
+    }
+  }
 };
 
 </script>

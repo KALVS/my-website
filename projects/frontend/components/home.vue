@@ -19,40 +19,41 @@
             @click="toggleTab(3)" aria-selected="false">Fun stuff</button>
       </menu>
       <article role="tabpanel" id="me">
-        <div class="container">
-          <div id=headerContainer>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/SNice.svg"
-              alt="A picture of Alex" height="50px" width="50px" class="">
-              <div width="25%">
-                <h4 id="nameHeader" >Alex Holm</h4>
-                <h6 id="nameHeader" >Software Engineer</h6>
-              </div>
-            <!-- <div id="titleHeader">
-            </div> -->
+        <div id="wrapper">
+          <div id="left">
+            <h4 style="margin: 0;" >Alex Holm</h4>
+            <h6 style="margin: 0;" >Software Engineer</h6>
+            <h5 style="margin: 0;" ><a href="http://linkedin.com/in/alex-holm-4b10a4175">LinkedIn</a></h5>
+            <h5 style="margin: 0;" ><a href="http://github.com/KALVS"> Github </a></h5>
+            
           </div>
-          <div id="links">
-            <fieldset>
-              <legend>Show:</legend>
-              <div class="field-row">
-                <input id="radio25" type="radio" name="fieldset-example2" @click="testClick()">
-                <label for="radio25">Education</label>
-              </div>
-              <div class="field-row">
-                <input id="radio26" type="radio" name="fieldset-example2">
-                <label for="radio26">Extracurricular</label>
-              </div>
-              <div class="field-row">
-                <input id="radio27" type="radio" name="fieldset-example2">
-                <label for="radio27">Experience</label>
-              </div>
-              <div class="field-row">
-                <input id="radio28" type="radio" name="fieldset-example2">
-                <label for="radio28">All of the above</label>
-              </div>
-            </fieldset>
+          <div id="right">
+            <img src="../assets/pictures/PictureofAlex.jpg"
+              alt="A pixcture of Alex" class="profilePicture" height="100px"> 
           </div>
         </div>
-        <button disabled="disabled" id="inputRadioButton" @click="submitRadio()"> wtf</button>
+        <div id="links">
+          <fieldset>
+            <legend>Show:</legend>
+            <div class="field-row">
+              <input id="radio25" v-model="selected" value="education" type="radio" name="fieldset-example2" >
+              <label for="radio25">Education</label>
+            </div>
+            <div class="field-row">
+              <input id="radio26" v-model="selected" value="extracurricular" type="radio" name="fieldset-example2">
+              <label for="radio26">Extracurricular</label>
+            </div>
+            <div class="field-row">
+              <input id="radio27" v-model="selected"  value="experience" type="radio" name="fieldset-example2">
+              <label for="radio27">Experience</label>
+            </div>
+            <div class="field-row">
+              <input id="radio28" v-model="selected" value="all" type="radio" name="fieldset-example2">
+              <label for="radio28">All of the above</label>
+            </div>
+          </fieldset>
+        </div>
+        <button id="inputRadioButton" @click="$emit('selectedradio', selected)"> wtf</button>
         <section class="field-row">
           <button>Reset Alarm...</button>
           <label>Try this to get some attention</label>
@@ -93,41 +94,60 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 40vw
+  width: 50vw
 }
+
+@media only screen and (max-width: 600px) {
+  .window {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw
+  }
+}
+
+#wrapper {
+  display: flex;
+  width: 60%;
+}
+
+#left {
+  flex: 0 0 65%;
+}
+
+#right {
+  flex: 1;
+}
+
+
 
 #headerContainer {
   height:100px;
   width: 100%;
-  float: left;
-  background-color: red;
+  background-color: palegoldenrod;
   /* margin-top: -30px; */
 }
 
 .profilePicture {
-  float:left
-}
-
-#titleHeader  {
-  height:100px;
-  width: 25%;
-  float: right;
+  display: block;
   background-color: blue;
-  /* margin-top: -30px; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+#titleContainer  {
+  /* background-color: firebrick; */
+  width: 50%;
+  background-color: rebeccapurple;
+}
 
 #nameHeader {
-  margin-top:0px;
-  float:right;
+  margin-top:15px;
   height: 20px;
+  background-color: saddlebrown;
 }
 
-#jobHeader {
-  margin-bottom:0px;
-  float:right;
-  height: 20px;
-}
 #links {
   margin-top: 10px;
 }
@@ -137,9 +157,13 @@
 <script>
 export default {
   data() {
+    return {
+      selected: false
+    }
   },
   methods: {
-    testClick() {
+    submitRadio() {
+      console.log()
     },
     toggleTab(number) {
       const me = document.getElementById('me');
