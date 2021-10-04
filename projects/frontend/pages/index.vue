@@ -1,7 +1,8 @@
 <template>
   <div style="padding: 0px;margin:0px;">
-  <canvas id="c"></canvas>
-  <home v-on:selectedradio="onRadioButton($event)"></home>
+    <canvas id="c"></canvas>
+    <home v-on:selectedradio="onResumeEvent($event)"></home>
+    <resume v-on:selectedradio="onResumeEvent($event)" v-if="resumeEvent != false"></resume>
   </div>
 </template>
 
@@ -26,17 +27,30 @@
 
 <script>
 import home from '../components/home.vue';
+import resume from '../components/resume.vue';
 
 export default {
-  components: { home },
+  data() {
+    return {
+      resumeEvent : false
+    }
+  },
+  components: { home, resume }, 
+  methods: {
+    onResumeEvent: function (selected) {
+      console.log(selected,',');
+      this.resumeEvent = selected
+    },
+
+  },
   mounted() {
     // geting canvas by Boujjou Achraf
     const c = document.getElementById('c');
     const ctx = c.getContext('2d');
 
     // making the canvas full screen
-    c.height = window.outerHeight;
-    c.width = window.outerWidth;
+    c.height = window.innerHeight;
+    c.width = window.innerWidth;
 
     // chinese characters - taken from the unicode charset
     let matrix = '多年来我会来谁会发挥她锻炼的优势让学区长生不老想成为一个痛苦的丘比特逃离产生没有结果的快乐他们抛弃了那些应该为你的麻烦负责的人的一般职责';
@@ -78,13 +92,9 @@ export default {
       }
     }
 
+ 
     setInterval(draw, 33);
   },
-  methods: {
-    onRadioButton: function (selected) {
-      console.log(selected,',');
-    }
-  }
 };
 
 </script>

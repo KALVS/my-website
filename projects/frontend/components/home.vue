@@ -22,42 +22,29 @@
         <div id="wrapper">
           <div id="left">
             <h4 style="margin: 0;" >Alex Holm</h4>
-            <h6 style="margin: 0;" >Software Engineer</h6>
+            <h5 style="margin: 0;" >Software Engineer</h5>
             <h5 style="margin: 0;" ><a href="http://linkedin.com/in/alex-holm-4b10a4175">LinkedIn</a></h5>
             <h5 style="margin: 0;" ><a href="http://github.com/KALVS"> Github </a></h5>
-            
           </div>
           <div id="right">
             <img src="../assets/pictures/PictureofAlex.jpg"
-              alt="A pixcture of Alex" class="profilePicture" height="100px"> 
+              alt="A picture of Alex" class="profilePicture" height="100px"> 
           </div>
         </div>
         <div id="links">
           <fieldset>
-            <legend>Show:</legend>
+            <legend>Lets get some data:</legend>
             <div class="field-row">
-              <input id="radio25" v-model="selected" value="education" type="radio" name="fieldset-example2" >
-              <label for="radio25">Education</label>
+              <button id="inputRadioButton" @click="$emit('selectedradio', 'education')"> Education </button>
             </div>
             <div class="field-row">
-              <input id="radio26" v-model="selected" value="extracurricular" type="radio" name="fieldset-example2">
-              <label for="radio26">Extracurricular</label>
+              <button id="inputRadioButton" @click="$emit('selectedradio', 'extracurricular')"> Extracurricular </button>
             </div>
             <div class="field-row">
-              <input id="radio27" v-model="selected"  value="experience" type="radio" name="fieldset-example2">
-              <label for="radio27">Experience</label>
-            </div>
-            <div class="field-row">
-              <input id="radio28" v-model="selected" value="all" type="radio" name="fieldset-example2">
-              <label for="radio28">All of the above</label>
+              <button id="inputRadioButton" @click="$emit('selectedradio', 'experience')"> Experience </button>
             </div>
           </fieldset>
         </div>
-        <button id="inputRadioButton" @click="$emit('selectedradio', selected)"> wtf</button>
-        <section class="field-row">
-          <button>Reset Alarm...</button>
-          <label>Try this to get some attention</label>
-        </section>
       </article>
 
       <article role="tabpanel" hidden id="project">
@@ -94,7 +81,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 50vw
+  width: 50vw;
+  max-height: 600px;
+  
 }
 
 @media only screen and (max-width: 600px) {
@@ -103,7 +92,9 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 80vw
+    width: 60vw;
+    max-height: 500px;
+    
   }
 }
 
@@ -175,8 +166,8 @@ export default {
       switch (number) {
         case 1:
           me.hidden = false;
-          project.ariaSelected = true;
-          fun.hidden = true;
+          meTab.ariaSelected = true;
+          project.hidden = true;
           projectTab.ariaSelected = false;
           fun.hidden = true;
           funTab.ariaSelected = false;
