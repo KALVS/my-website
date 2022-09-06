@@ -19,7 +19,6 @@
 
 <script>
 import home from "../components/home.vue";
-import resume from "../components/resume.vue";
 
 import education from "../components/education.vue";
 import extracurricular from "../components/extracurricular.vue";
@@ -40,12 +39,18 @@ export default {
       if (selected === "education") {
         this.selected === "education";
         this.educationEvent = selected;
+        this.extracurricularEvent = false;
+        this.experienceEvent = false;
       } else if (selected === "extracurricular") {
         this.selected === "extracurricular";
         this.extracurricularEvent = selected;
+        this.experienceEvent = false;
+        this.educationEvent = false;
       } else if (selected === "experience") {
         this.selected === "experiencecurricular";
         this.experienceEvent = selected;
+        this.extracurricularEvent = false;
+        this.educationEvent = false;
       } else {
         console.log("Whaat the fuck?!");
         // alert("Whaat the fuck?!");

@@ -10,7 +10,6 @@
       </div>
     </div>
     <div class="window-body">
-      <h4>Queensland University of Technology</h4>
       <h5>
         Bachelor of Information Technology Major: Computer Science February 2017
         -> November 2020

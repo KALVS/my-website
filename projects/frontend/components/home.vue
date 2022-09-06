@@ -93,25 +93,26 @@
 
       <article role="tabpanel" hidden id="project">
         <!-- // eslint-disable-next-line max-len -->
-        <img
-          style="width: 100%"
-          src="https://upload.wikimedia.org/wikipedia/commons/e/e0/SNice.svg"
-        />
+        <p>
+          Alex has several personal projects going on at the moment; He enjoys
+          3d printing, mainly to complete the inMoov Android, printing
+          personalised gifts for friends and collegues (links and pictures of
+          prints and android)
+        </p>
+        <p>
+          He manages a TikTok account about eating in the shower: CleanEating
+          (Link to TikTok)
+        </p>
       </article>
 
       <article role="tabpanel" hidden id="fun">
         <p>
-          You create the content for each tab by using an
-          <code>article</code> tag.
+          Alex has several personal projects going on at the moment; He enjoys
+          3d printing, mainly to complete the inMoov Android, printing
+          personalised gifts for friends and collegues (links and pictures of
+          prints and android) Running a TikTok account: CleanEating (Link to
+          TikTok)
         </p>
-        <iframe
-          width="100%"
-          height="200"
-          src="https://www.youtube.com/embed/TODJBQ0tnow"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
       </article>
       <section class="field-row" style="justify-content: flex-end">
         <button>OK</button>
@@ -149,7 +150,7 @@
 
 #wrapper {
   display: flex;
-  width: 60%;
+  width: 100%;
 }
 
 #left {
@@ -158,6 +159,8 @@
 
 #right {
   flex: 1;
+  float: right;
+  margin-right: 0px;
 }
 
 #headerContainer {
