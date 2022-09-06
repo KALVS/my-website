@@ -62,7 +62,7 @@
         </div>
         <div id="links">
           <fieldset>
-            <legend>Lets get some data:</legend>
+            <legend>What are you interested in knowing?</legend>
             <div class="field-row">
               <button
                 id="inputRadioButton"
