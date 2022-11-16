@@ -4,6 +4,7 @@
       <div class="title-bar-text">Educational Activities</div>
       <div class="title-bar-controls">
         <button
+      
           aria-label="Close"
           @click="$emit('selectedradio', false)"
         ></button>
@@ -25,6 +26,7 @@
       <h5>Maurice Blackburn Hackathon 2018</h5>
       - Alex and his team designed a tool that improved access to justice for
       unfair dismissal claims.
+      <br/>
     </div>
   </div>
 </template>

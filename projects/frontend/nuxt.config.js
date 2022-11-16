@@ -14,7 +14,7 @@ if (!process.env.NUXT_ENV) {
 
 export default {
   head: {
-    title: 'my title',
+    title: 'Alex Holm',
     meta: [
       { charset: 'utf-8' }],
   },

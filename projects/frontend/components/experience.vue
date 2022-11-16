@@ -14,7 +14,7 @@
       <strong>Web Developer January 2021 -> Now</strong>
       In this role Alex is part of the engineering team that builds and
       maintains iNSPIRETEK's sports analytics mobile application and data
-      analytics pipeline. He primarily uses Angular and Nativescript to build a
+      analytics pipeline. He primarily uses Angular and Typescript to build a
       responsive mobile app that communicates with a backend hosted in AWS.
       <h4>LitePages</h4>
       <strong>Technical Co-Founder June 2019 -> January 2021</strong>

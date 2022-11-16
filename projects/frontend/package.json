@@ -4,7 +4,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "deploy" : "nuxt build && aws --region us-east-2 --profile $npm_config_profile s3 sync ./dist s3://$npm_config_bucket --delete"
   },
   "dependencies": {
     "@nuxt/types": "^2.15.7",

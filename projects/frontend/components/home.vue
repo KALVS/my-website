@@ -4,8 +4,8 @@
       <div class="title-bar-text"></div>
       <div class="title-bar-controls">
         <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Restore"></button>
+        <!-- <button aria-label="Maximize"></button>
+        <button aria-label="Restore"></button> -->
         <button aria-label="Close"></button>
       </div>
     </div>
@@ -20,7 +20,7 @@
         >
           About me
         </button>
-        <button
+        <!-- <button
           role="tab"
           id="projectTab"
           aria-controls="project"
@@ -37,7 +37,7 @@
           aria-selected="false"
         >
           Fun stuff
-        </button>
+        </button> -->
       </menu>
       <article role="tabpanel" id="me">
         <div id="wrapper">
@@ -91,21 +91,15 @@
         </div>
       </article>
 
-      <article role="tabpanel" hidden id="project">
+      <!-- <article role="tabpanel" hidden id="project">
         <!-- // eslint-disable-next-line max-len -->
-        <p>
-          Alex has several personal projects going on at the moment; He enjoys
-          3d printing, mainly to complete the inMoov Android, printing
-          personalised gifts for friends and collegues (links and pictures of
-          prints and android)
+      <!-- <p>
+          Alex enjoys 3d printing, travelling and is eager to learn 
         </p>
-        <p>
-          He manages a TikTok account about eating in the shower: CleanEating
-          (Link to TikTok)
-        </p>
-      </article>
+        <p></p>
+      </article> -->
 
-      <article role="tabpanel" hidden id="fun">
+      <!-- <article role="tabpanel" hidden id="fun">
         <p>
           Alex has several personal projects going on at the moment; He enjoys
           3d printing, mainly to complete the inMoov Android, printing
@@ -113,7 +107,7 @@
           prints and android) Running a TikTok account: CleanEating (Link to
           TikTok)
         </p>
-      </article>
+      </article> -->
       <section class="field-row" style="justify-content: flex-end">
         <button>OK</button>
         <button>Cancel</button>
@@ -207,11 +201,11 @@ export default {
     },
     toggleTab(number) {
       const me = document.getElementById("me");
-      const project = document.getElementById("project");
-      const fun = document.getElementById("fun");
+      // const project = document.getElementById("project");
+      // const fun = document.getElementById("fun");
       const meTab = document.getElementById("meTab");
-      const projectTab = document.getElementById("projectTab");
-      const funTab = document.getElementById("funTab");
+      // const projectTab = document.getElementById("projectTab");
+      // const funTab = document.getElementById("funTab");
       switch (number) {
         case 1:
           me.hidden = false;
