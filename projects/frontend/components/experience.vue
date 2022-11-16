@@ -24,6 +24,11 @@
       Beanstalk and CircleCI to build an automatic delivery pipeline for
       developement and production workloads. As the lead developer he was also
       responsible for training and managing a small team of developer interns
+      <h4>Pizza Roulette</h4>
+      <strong>Software Engineer | Streamer 2019 June -> 2020 March</strong>
+      Alex played a supportive role working at Pizza Roulette, 
+      working with Nuxt and Node to create an online game of chance where users could win a pizza in exchange for $2.
+      During this time, Pizza Roulette would live stream games while Alex would stream games such as RuneScape and Sims
       <h4>StartMIT Participant</h4>
       <strong>Participant January 2020 -> January 2020</strong>
       StartMIT is a two-and-a-half week course where students hear from leaders
