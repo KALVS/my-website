@@ -18,24 +18,7 @@
       <h4>2018 Co-Founder & General Committee</h4>
       White Hats is the QUT Cybersecurity student club. It organizes weekly
       presentations from industry experts and student researched topics. Alex
-      helped found the club in late 2018. Web Developer January 2021 -> Now In
-      this role Alex is part of the engineering team that builds and maintains
-      iNSPIRETEK's sports analytics mobile application and data analytics
-      pipeline. He primarily uses Angular and Nativescript to build a responsive
-      mobile app that communicates with a backend hosted in Google Cloud
-      Platform. LitePages Technical Co-Founder June 2019 -> January 2021 In 2018
-      Alex joined the LitePages team as the Lead Engineer and Technical Co-
-      Founder. LitePages is a lead generation and marketing tool for tradesmen &
-      small businesses. His role consisted of full stack development using Pug
-      and NuxtJS for front end with a NodeJS 10 backend. He utilized AWS Elastic
-      Beanstalk and CircleCI to build an automatic delivery pipeline for
-      developement and production workloads. As the lead developer he was also
-      responsible for training and managing a small team of developer interns.
-      Massachusetts Institute of Technology StartMIT Participant January 2020 ->
-      January 2020 StartMIT is a two-and-a-half week course where students hear
-      from leaders in innovation, participate in activities to refine their
-      projects, and attend events with alumni and other leaders in the MIT
-      entrepreneurial ecosystem.
+      helped found the club in late 2018. 
     </div>
   </div>
 </template>
