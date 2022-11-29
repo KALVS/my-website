@@ -92,14 +92,14 @@
       </article>
 
       <!-- <article role="tabpanel" hidden id="project">
-        <!-- // eslint-disable-next-line max-len -->
-      <!-- <p>
+        // eslint-disable-next-line max-len
+      <p>
           Alex enjoys 3d printing, travelling and is eager to learn 
         </p>
         <p></p>
-      </article> -->
+      </article>
 
-      <!-- <article role="tabpanel" hidden id="fun">
+      <article role="tabpanel" hidden id="fun">
         <p>
           Alex has several personal projects going on at the moment; He enjoys
           3d printing, mainly to complete the inMoov Android, printing
@@ -107,9 +107,9 @@
           prints and android) Running a TikTok account: CleanEating (Link to
           TikTok)
         </p>
-      </article> -->
+      </article> --> 
       <section class="field-row" style="justify-content: flex-end">
-        <button>OK</button>
+        <button><a class="mailLink" href="mailto:alexholmsoftware@gmail.com">Okay</a></button>
         <button>Cancel</button>
       </section>
     </div>
@@ -129,6 +129,12 @@
   transform: translate(-50%, -50%);
   width: 50vw;
   max-height: 600px;
+}
+
+.mailLink {
+    color:inherit;
+    text-decoration:none;
+    
 }
 
 @media only screen and (max-width: 600px) {
