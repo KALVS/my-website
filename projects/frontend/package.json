@@ -5,13 +5,14 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "deploy" : "nuxt build && aws --region us-east-2 --profile $npm_config_profile s3 sync ./dist s3://$npm_config_bucket --delete"
+    "deploy": "nuxt build && aws --region us-east-2 --profile $npm_config_profile s3 sync ./dist s3://$npm_config_bucket --delete"
   },
   "dependencies": {
     "@nuxt/types": "^2.15.7",
     "7.css": "^0.4.0",
     "dotenv": "^9.0.2",
     "nuxt": "^2.15.7"
+    
   },
   "devDependencies": {
     "eslint": "^7.32.0",
@@ -20,6 +21,7 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^7.15.0"
+    "eslint-plugin-vue": "^7.15.0",
+    "prettier": "2.8.1"
   }
 }
