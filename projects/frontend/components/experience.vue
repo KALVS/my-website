@@ -53,10 +53,10 @@
 .window {
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 45%;
     transform: translate(-50%, -50%);
     width: 80vw;
-    max-height: 600px;
+    /* max-height: 600px; */
 }
 </style>
 <script>
