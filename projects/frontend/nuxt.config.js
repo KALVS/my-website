@@ -16,7 +16,11 @@ export default {
   head: {
     title: 'Alex Holm',
     meta: [
-      { charset: 'utf-8' }],
+      { charset: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width,initial-scale=1.0'
+      }],
   },
   css: [
     // Load a Node.js module directly (here it's a Sass file)
