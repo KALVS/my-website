@@ -5,13 +5,15 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "deploy" : "nuxt build && aws --region us-east-2 --profile $npm_config_profile s3 sync ./dist s3://$npm_config_bucket --delete"
+    "deploy": "nuxt build && aws --region us-east-2 --profile $npm_config_profile s3 sync ./dist s3://$npm_config_bucket --delete"
   },
   "dependencies": {
     "@nuxt/types": "^2.15.7",
+    "@vue-stripe/vue-stripe": "^4.5.0",
     "7.css": "^0.4.0",
     "dotenv": "^9.0.2",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "stripe": "^12.5.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

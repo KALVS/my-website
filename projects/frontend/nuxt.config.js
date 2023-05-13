@@ -26,6 +26,6 @@ export default {
     // Load a Node.js module directly (here it's a Sass file)
     '7.css/dist/7.css',
   ],
-  mode: 'spa',
+  ssr: true,
   components: 'true',
 };
