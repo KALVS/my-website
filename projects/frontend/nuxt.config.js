@@ -21,11 +21,20 @@ export default {
         name: 'viewport',
         content: 'width=device-width,initial-scale=1.0'
       }],
+      link: [
+        { rel: 'stylesheet', href: '@/assets/global.css' },
+      ],
   },
   css: [
+    
+      '@/assets/global.css',
+    
     // Load a Node.js module directly (here it's a Sass file)
     '7.css/dist/7.css',
   ],
   ssr: true,
   components: 'true',
+  plugins: [
+    { src: '@/plugins/vue-stripe.js', ssr: false },
+  ],
 };

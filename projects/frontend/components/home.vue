@@ -29,7 +29,7 @@
                 >
                     Projects
                 </button> -->
-                <!-- <button
+                <button
                     role="tab"
                     id="funTab"
                     aria-controls="fun"
@@ -37,7 +37,7 @@
                     aria-selected="false"
                 >
                     Fun stuff
-                </button> -->
+                </button>
             </menu>
             <article role="tabpanel" id="me">
                 <div id="wrapper">
@@ -109,20 +109,26 @@
                 <p></p>
             </article> -->
 
-            <!-- <article role="tabpanel" hidden id="fun">
-                <p>
-                    Alex has several personal projects going on at the moment;
-                    He enjoys 3d printing, mainly to complete the inMoov
-                    Android, printing personalised gifts for friends and
-                    collegues (links and pictures of prints and android) Running
-                    a TikTok account: CleanEating (Link to TikTok)
-                </p>
-            </article> -->
+            <article role="tabpanel" hidden id="fun">
+                <fieldset>
+                    <div class="field-row">
+                        <button
+                            @click="$emit('selectedradio', 'secretSanta')"
+                            id="secretSanta"
+                        >
+                            Secret Santa as a service
+                        </button>
+                    </div>
+                </fieldset>
+            </article>
             <section class="field-row" style="justify-content: flex-end">
                 <button>
-                    <a class="mailLink" href="mailto:alexholmsoftware@gmail.com"
-                        >Okay</a
+                    <a
+                        class="mailLink"
+                        href="mailto:alexholmsoftware@gmail.com"
                     >
+                        Okay
+                    </a>
                 </button>
                 <button>Cancel</button>
             </section>
@@ -130,81 +136,62 @@
     </div>
 </template>
 
-<style scoped>
-.transparent::before,
-.transparent > .title-bar {
-    background-color: transparent;
-}
+<script>
+export default {
+    data() {
+        return {
+            selected: false,
+        }
+    },
+    methods: {
+        submitRadio() {
+            console.info('Hello ${User}, you sure know how to press my buttons')
+        },
+        toggleTab(number) {
+            const me = document.getElementById('me')
+            const project = document.getElementById('project')
+            const fun = document.getElementById('fun')
+            const meTab = document.getElementById('meTab')
+            const projectTab = document.getElementById('projectTab')
+            const funTab = document.getElementById('funTab')
+            switch (number) {
+                case 1:
+                    console.log('1')
+                    me.hidden = false
+                    meTab.ariaSelected = true
+                    // project.hidden = true
+                    // projectTab.ariaSelected = false
+                    fun.hidden = true
+                    funTab.ariaSelected = false
+                    break
+                case 2:
+                    console.log('2')
+                    me.hidden = true
+                    meTab.ariaSelected = false
+                    // project.hidden = false
+                    // projectTab.ariaSelected = true
+                    fun.hidden = true
+                    funTab.ariaSelected = false
+                    break
+                case 3:
+                    console.log('3')
+                    me.hidden = true
+                    meTab.ariaSelected = false
+                    // project.hidden = true
+                    // projectTab.ariaSelected = false
+                    fun.hidden = false
+                    funTab.ariaSelected = true
+                    break
 
-.window {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50vw;
-    max-height: 600px;
+                default:
+                    break
+            }
+        },
+    },
 }
+</script>
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .window {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 95vw;
-        max-height: 600px;
-    }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .window {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 90vw;
-        max-height: 600px;
-    }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .window {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 70vw;
-        max-height: 600px;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    .window {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 50vw;
-        max-height: 600px;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    .window {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 50vw;
-        max-height: 600px;
-    }
-}
-
+<style>
 .mailLink {
     color: inherit;
     text-decoration: none;
@@ -228,85 +215,24 @@
 #headerContainer {
     height: 100px;
     width: 100%;
-    background-color: palegoldenrod;
-    /* margin-top: -30px; */
 }
 
 .profilePicture {
     display: block;
-    background-color: blue;
     margin-left: auto;
     margin-right: auto;
 }
 
 #titleContainer {
-    /* background-color: firebrick; */
     width: 50%;
-    background-color: rebeccapurple;
 }
 
 #nameHeader {
     margin-top: 15px;
     height: 20px;
-    background-color: saddlebrown;
 }
 
 #links {
     margin-top: 10px;
 }
 </style>
-
-<script>
-export default {
-    data() {
-        return {
-            selected: false,
-        }
-    },
-    methods: {
-        submitRadio() {
-            console.info('Hello ${User}, you sure know how to press my buttons')
-        },
-        toggleTab(number) {
-            const me = document.getElementById('me')
-            const project = document.getElementById('project')
-            const fun = document.getElementById('fun')
-            const meTab = document.getElementById('meTab')
-            const projectTab = document.getElementById('projectTab')
-            const funTab = document.getElementById('funTab')
-            // switch (number) {
-            //     case 1:
-            //         console.log('1')
-            //         me.hidden = false
-            //         meTab.ariaSelected = true
-            //         // project.hidden = true
-            //         // projectTab.ariaSelected = false
-            //         fun.hidden = true
-            //         funTab.ariaSelected = false
-            //         break
-            //     case 2:
-            //         console.log('2')
-            //         me.hidden = true
-            //         meTab.ariaSelected = false
-            //         // project.hidden = false
-            //         // projectTab.ariaSelected = true
-            //         fun.hidden = true
-            //         funTab.ariaSelected = false
-            //         break
-            //     case 3:
-            //         console.log('3')
-            //         me.hidden = true
-            //         meTab.ariaSelected = false
-            //         // project.hidden = true
-            //         // projectTab.ariaSelected = false
-            //         fun.hidden = false
-            //         funTab.ariaSelected = true
-            //         break
-
-            //     default:
-            //         break
-            // }
-        },
-    },
-}
-</script>

@@ -23,8 +23,6 @@
         </div>
     </div>
 </template>
-<script></script>
-
 <style scoped>
 .transparent::before,
 .transparent > .title-bar {

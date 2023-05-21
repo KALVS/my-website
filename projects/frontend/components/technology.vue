@@ -59,7 +59,9 @@
     </div>
 </template>
 
-<script></script>
+<script>
+export default {}
+</script>
 <style scoped>
 .transparent::before,
 .transparent > .title-bar {

@@ -1,6 +1,6 @@
 <template>
     <div style="padding: 0px; margin: 0px">
-        <canvas ref="canvas"></canvas>
+        <canvas ref="canvas"> </canvas>
         <home v-on:selectedradio="onInterestEvent($event)"></home>
         <education
             v-on:selectedradio="onInterestEvent($event)"
@@ -19,17 +19,22 @@
             v-on:selectedradio="onInterestEvent($event)"
             v-if="technologyEvent != false"
         ></technology>
+
+        <santaForm
+            v-on:selectedradio="onInterestEvent($event)"
+            v-if="secretSantaEvent != false"
+        ></santaForm>
     </div>
 </template>
 
 <script>
-import UAParser from 'ua-parser-js'
-
 import home from '../components/home.vue'
-
 import education from '../components/education.vue'
 import extracurricular from '../components/extracurricular.vue'
 import experience from '../components/experience.vue'
+import santaForm from '../components/santa/santaForm.vue'
+import technology from '../components/technology.vue'
+import payment from '~/components/stripe/payment.vue'
 
 export default {
     data() {
@@ -38,46 +43,50 @@ export default {
             extracurricularEvent: false,
             experienceEvent: false,
             technologyEvent: false,
+            secretSantaEvent: false,
             isClient: false,
             drops: [],
             matrix: '多年来我会来谁会发挥她锻炼的优势让学区长生不老想成为一个痛苦的丘比特逃离产生没有结果的快乐他们抛弃了那些应该为你的麻烦负责的人的一般职责',
             fontSize: 10,
         }
     },
-    components: { home, education, experience, extracurricular },
+    components: {
+        home,
+        education,
+        experience,
+        extracurricular,
+        santaForm,
+        technology,
+        payment,
+    },
     methods: {
         onInterestEvent: function (selected) {
             console.log(selected, ',')
-            if (selected === 'education') {
-                this.selected === 'education'
-                this.educationEvent = selected
-                this.extracurricularEvent = false
-                this.experienceEvent = false
-                this.technologyEvent = false
-            } else if (selected === 'extracurricular') {
-                this.selected === 'extracurricular'
-                this.extracurricularEvent = selected
-                this.experienceEvent = false
-                this.educationEvent = false
-                this.technologyEvent = false
-            } else if (selected === 'experience') {
-                this.selected === 'experiencecurricular'
-                this.experienceEvent = selected
-                this.extracurricularEvent = false
-                this.educationEvent = false
-                this.technologyEvent = false
-            } else if (selected === 'technology') {
-                this.selected === 'technology'
-                this.technologyEvent = selected
-                this.experienceEvent = false
-                this.extracurricularEvent = false
-                this.educationEvent = false
-            } else {
-                console.log("This shouldn't happen....")
-                this.educationEvent = false
-                this.experienceEvent = false
-                this.extracurricularEvent = false
-                this.technologyEvent = false
+            this.selected = selected
+            this.extracurricularEvent = false
+            this.educationEvent = false
+            this.experienceEvent = false
+            this.technologyEvent = false
+            this.secretSantaEvent = false
+
+            switch (selected) {
+                case 'education':
+                    this.educationEvent = true
+                    break
+                case 'extracurricular':
+                    this.extracurricularEvent = true
+                    break
+                case 'experience':
+                    this.experienceEvent = true
+                    break
+                case 'technology':
+                    this.technologyEvent = true
+                    break
+                case 'secretSanta':
+                    this.secretSantaEvent = true
+                default:
+                    // Default case, if none of the conditions match
+                    break
             }
         },
     },
