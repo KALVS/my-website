@@ -33,21 +33,6 @@
                                 Remove
                             </button>
                         </div>
-                        <!-- <p style="width: 20%; background-color: red">
-                            <strong> Name: </strong>
-                            {{ confirmed.name }}
-                        </p>
-                        <p style="width: 20%; background-color: red">
-                            <strong> Number: </strong>
-                            {{ confirmed.number }}
-                        </p>
-                        <button
-                            type="button"
-                            @click="removeParticipant(index)"
-                            class="remove-button"
-                        >
-                            Remove
-                        </button> -->
                     </li>
                 </ul>
             </div>
@@ -107,7 +92,9 @@
                 >
                     Add Participant
                 </button>
-                <Payment :quantity="quantity" />
+                <div @click="">
+                    <Payment :quantity="quantity" />
+                </div>
             </form>
         </div>
     </div>
@@ -131,19 +118,15 @@ export default {
         }
     },
     methods: {
-        hideNameTooltip(index) {
+        hideNameTooltip() {
             this.nameTooltipHidden = true
         },
-        hideNumberTooltip(index) {
+        hideNumberTooltip() {
             this.numberTooltipHidden = true
         },
-        validateAndAddParticipant(index) {
-            console.log(this.participant.name)
-            console.log(this.participant.number)
-            console.log(this.participants[0])
+        validateAndAddParticipant() {
             if (this.participant.name !== '') {
                 if (/^\d{10}$/.test(this.participant.number)) {
-                    console.log(this.participants)
                     this.participants.push({
                         name: this.participant.name,
                         number: this.participant.number,
@@ -166,7 +149,7 @@ export default {
         removeParticipant(index) {
             this.participants.splice(index, 1)
         },
-        submitForm(event) {
+        checkout() {
             event.preventDefault()
             // Make an HTTP POST request to your Lambda function
             // axios

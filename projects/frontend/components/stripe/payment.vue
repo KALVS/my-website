@@ -31,6 +31,7 @@ export default {
                     quantity: this.quantity,
                 },
             ],
+            mode: 'payment',
             successUrl: 'http://localhost:3000/success',
             cancelUrl: 'http://localhost:3000',
         }

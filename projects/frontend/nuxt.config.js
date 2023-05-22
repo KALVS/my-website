@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
 // import "7.css/dist/7.css";
-require('dotenv').config();
-
+import path from 'path'
 // const APP_URL = process.env.APP_URL || 'http://localhost:4000';
 // const API_URL = process.env.API_URL || 'http://localhost:3000';
-
 if (!process.env.APP_URL || !process.env.API_URL) {
   console.warn('No API_URL or APP_URL provided in environment, using defaults');
 }
@@ -26,15 +24,28 @@ export default {
       ],
   },
   css: [
-    
-      '@/assets/global.css',
-    
+    '@/assets/global.css',
     // Load a Node.js module directly (here it's a Sass file)
     '7.css/dist/7.css',
   ],
   ssr: true,
+  store: true,
   components: 'true',
+  build: {
+    extend(config, { isDev, isClient }) {
+      if (isClient) {
+        require('dotenv').config();
+        config.plugins.push(
+          new (require('dotenv-webpack'))({
+            path: path.resolve(__dirname, '.env'),
+            systemvars: true,
+          })
+        );
+      }
+    },
+  },
   plugins: [
-    { src: '@/plugins/vue-stripe.js', ssr: false },
+    { src: '@/plugins/vue-stripe.ts', ssr: false },
   ],
+  serverMiddleware: ['~/server/api.ts'],
 };
