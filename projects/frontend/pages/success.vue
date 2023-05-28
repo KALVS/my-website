@@ -1,8 +1,6 @@
 <script>
-import Cookies from 'js-cookie'
 export default {
     mounted() {
-        const storedParticipants = Cookies.get('participants')
         console.log(storedParticipants)
         if (storedParticipants) {
             this.confirmedParticipants = decodeURI(storedParticipants)

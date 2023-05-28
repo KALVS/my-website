@@ -92,8 +92,15 @@
                 >
                     Add Participant
                 </button>
-                <div @click="">
-                    <Payment :quantity="quantity" />
+
+                <button @click="submit($event)">Submit</button>
+
+                <div v-if="clientSecret">
+                    <Index
+                        :quantity="quantity"
+                        :client-secret="clientSecret"
+                        :participants="participants"
+                    />
                 </div>
             </form>
         </div>
@@ -101,20 +108,22 @@
 </template>
 
 <script>
-import Payment from '@/components/stripe/payment.vue'
+import Index from '@/components/stripe/index.vue'
 
 export default {
     components: {
-        Payment,
+        Index,
     },
     name: 'SecretSanta',
     data() {
         return {
+            showCheckout: false,
             quantity: 1,
             participant: { name: '', number: '' },
             participants: [],
             nameTooltipHidden: true,
             numberTooltipHidden: true,
+            clientSecret: null,
         }
     },
     methods: {
@@ -148,6 +157,24 @@ export default {
         },
         removeParticipant(index) {
             this.participants.splice(index, 1)
+        },
+        submit(event) {
+            event.preventDefault()
+            this.createPaymentIntent().then((this.showCheckout = true))
+        },
+        async createPaymentIntent() {
+            this.$axios
+                .post('/api/create-payment-intent', { quantity: this.quantity })
+                .then((response) => {
+                    // Handle the response from the backend
+                    console.log(response)
+                    this.clientSecret = response.data.clientSecret
+                    console.log(this.clientSecret)
+                })
+                .catch((error) => {
+                    // Handle any errors that occurred during the request
+                    console.error(error)
+                })
         },
         checkout() {
             event.preventDefault()

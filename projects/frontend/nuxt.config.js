@@ -22,6 +22,9 @@ export default {
       link: [
         { rel: 'stylesheet', href: '@/assets/global.css' },
       ],
+      script: [
+        { src: 'https://js.stripe.com/v3' },
+      ],
   },
   css: [
     '@/assets/global.css',
@@ -31,6 +34,7 @@ export default {
   ssr: true,
   store: true,
   components: 'true',
+  serverMiddleware: ['~/server/api.ts'],
   build: {
     extend(config, { isDev, isClient }) {
       if (isClient) {
@@ -45,7 +49,25 @@ export default {
     },
   },
   plugins: [
-    { src: '@/plugins/vue-stripe.ts', ssr: false },
+    { src: '~/plugins/vue-stripe.ts', mode: 'client' },//  { src: '~/plugins/myplugin.js', mode: 'client' }
   ],
-  serverMiddleware: ['~/server/api.ts'],
+  types: [
+    "@nuxt/types",
+    "nuxt-stripe-module"
+  ],
+  modules: [
+    '@nuxtjs/axios',
+    ['nuxt-stripe-module', {
+      publishableKey: process.env.STRIPE_TEST_PKEY,
+    }],
+  ],
+  server: {
+    middleware: [
+      // server middleware goes here
+      { path: '/api', handler: '~/server-middleware/cors.js' }
+    ]
+  },
+  axios: {
+    baseURL: 'http://localhost:8000', // Replace with your backend URL
+  },
 };

@@ -34,7 +34,7 @@ import extracurricular from '../components/extracurricular.vue'
 import experience from '../components/experience.vue'
 import santaForm from '../components/santa/santaForm.vue'
 import technology from '../components/technology.vue'
-import payment from '~/components/stripe/payment.vue'
+import index from '~/components/stripe/index.vue'
 
 export default {
     data() {
@@ -57,7 +57,7 @@ export default {
         extracurricular,
         santaForm,
         technology,
-        payment,
+        index,
     },
     methods: {
         onInterestEvent: function (selected) {

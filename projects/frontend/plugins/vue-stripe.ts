@@ -1,6 +1,15 @@
 import Vue from 'vue';
-import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import VueSession from 'vue-session';
+import { StripePlugin } from '@vue-stripe/vue-stripe';
 
-export default () => {
-  Vue.component('StripeCheckout', StripeCheckout);
+const options = {
+  pk: process.env.STRIPE_TEST_PKEY,
+  testMode: true, // Boolean. To override the insecure host warning
+  stripeAccount: process.env.STRIPE_ACCOUNT,
+  apiVersion: '2022-11-15',
+  locale: 'auto',
 };
+console.log("OPTIONS!!!", options)
+
+Vue.use(VueSession);
+Vue.use(StripePlugin, options);
