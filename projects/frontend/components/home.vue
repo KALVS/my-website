@@ -156,7 +156,6 @@ export default {
             const funTab = document.getElementById('funTab')
             switch (number) {
                 case 1:
-                    console.log('1')
                     me.hidden = false
                     meTab.ariaSelected = true
                     // project.hidden = true
@@ -165,7 +164,6 @@ export default {
                     funTab.ariaSelected = false
                     break
                 case 2:
-                    console.log('2')
                     me.hidden = true
                     meTab.ariaSelected = false
                     // project.hidden = false
@@ -174,7 +172,6 @@ export default {
                     funTab.ariaSelected = false
                     break
                 case 3:
-                    console.log('3')
                     me.hidden = true
                     meTab.ariaSelected = false
                     // project.hidden = true

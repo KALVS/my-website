@@ -74,8 +74,5 @@ export default {}
     position: absolute;
     left: 20%;
     top: 10%;
-    /* transform: translate(-50%, -50%); */
-    /* width: 80vw; */
-    /* max-height: 600px; */
 }
 </style>

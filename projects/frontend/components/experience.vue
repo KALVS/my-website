@@ -9,7 +9,7 @@
                 ></button>
             </div>
         </div>
-        <div class="window-body">
+        <div class="window-body has-scrollbar">
             <h5>iNSPIRETEK</h5>
             <strong>Web Developer January 2021 -> Now</strong>
             In this role Alex is part of the engineering team that builds and
@@ -56,7 +56,7 @@
     top: 45%;
     transform: translate(-50%, -50%);
     width: 80vw;
-    /* max-height: 600px; */
+    max-height: 60ch;
 }
 </style>
 <script>

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 // import "7.css/dist/7.css";
-import path from 'path'
+
 // const APP_URL = process.env.APP_URL || 'http://localhost:4000';
 // const API_URL = process.env.API_URL || 'http://localhost:3000';
 if (!process.env.APP_URL || !process.env.API_URL) {
@@ -11,6 +11,12 @@ if (!process.env.NUXT_ENV) {
 }
 
 export default {
+  ssr: false, // Set the mode to 'spa' for Single-Page Application
+  env: {
+    AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
+    AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
+    
+  },
   head: {
     title: 'Alex Holm',
     meta: [
@@ -18,34 +24,31 @@ export default {
       {
         name: 'viewport',
         content: 'width=device-width,initial-scale=1.0'
-      }],
-      link: [
-        { rel: 'stylesheet', href: '@/assets/global.css' },
-      ],
+      }
+    ],
+    link: [
+      { rel: 'stylesheet', href: '@/assets/global.css' },
+    ],
+    script: [
+      { src: 'https://js.stripe.com/v3' },
+    ],
   },
   css: [
     '@/assets/global.css',
     // Load a Node.js module directly (here it's a Sass file)
     '7.css/dist/7.css',
   ],
-  ssr: true,
-  store: true,
-  components: 'true',
-  build: {
-    extend(config, { isDev, isClient }) {
-      if (isClient) {
-        require('dotenv').config();
-        config.plugins.push(
-          new (require('dotenv-webpack'))({
-            path: path.resolve(__dirname, '.env'),
-            systemvars: true,
-          })
-        );
-      }
-    },
-  },
-  plugins: [
-    { src: '@/plugins/vue-stripe.ts', ssr: false },
+  modules: [
+    '@nuxtjs/axios',
+    ['nuxt-stripe-module', {
+      publishableKey: process.env.STRIPE_TEST_PKEY,
+    }],
   ],
-  serverMiddleware: ['~/server/api.ts'],
+  // plugins: [
+  //   { src: '~/plugins/vue-stripe.ts', ssr: false },//  { src: '~/plugins/myplugin.js', mode: 'client' }
+  // ],
+  stripe: {
+    publishableKey: process.env.STRIPE_TEST_SKEY,
+    apiVersion: '2020-08-27'
+  },
 };
