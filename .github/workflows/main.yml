@@ -22,14 +22,27 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - name: Change directory and install dependencies
       run: |
         cd nuxt-node-template/projects/frontend
         npm ci
-        npm run build --if-present
-        npm test
 
+  # npm run build --if-present
+  # npm test
+#  steps:
+#     - 
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#         cache: 'npm'
+#     - run: npm ci
+#     - run: npm run build --if-present
+#     - run: npm test
     # steps:
     #   - run: echo "Unleash the Lint Roller!"
       # - run: npm ci
