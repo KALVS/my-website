@@ -1,5 +1,5 @@
 name: learning-actions
-run-name: ${{github.actor}} is using Git Actions
+
 on:
   pull_request:
     branches:    
@@ -21,9 +21,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
       - run: echo "Unleash the Lint Roller!"
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+      # - run: npm ci
+      # - run: npm run build --if-present
+      # - run: npm test
     
       
   test:
