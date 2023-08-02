@@ -1,1 +1,26 @@
+name: learning-actions
+run-name: ${{github.actor}} is using Git Actions
+on:
+  pull_request:
+    branches:    
+      - master
+      - adding-pipeline
+jobs:
+  lint:
+    runs-on: macos-13
+    name: Lint Code.
+    steps:
+      - run: echo "Hello World"
+  test:
+    runs-on: macos-13
+    name: Test Code.
+    needs: lint
+  build:
+    runs-on: macos-13
+    name: Build Code.
+    needs: [lint, test]
+  deploy:
+    runs-on: macos-13
+    name: Deploy changes
+    needs: [lint, test, build]
 
