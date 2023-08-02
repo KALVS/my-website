@@ -11,7 +11,7 @@ on:
 jobs:
   lint:
     runs-on: macos-13
-     defaults:
+    defaults:
       run:
         working-directory: ./projects/frontend
     name: Lint Code.
