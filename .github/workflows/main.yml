@@ -20,7 +20,7 @@ jobs:
     - run: echo "starting"
     - name: Change directory and install dependencies
       run: |
-        ls
+        cd frontend
         npm install
       # npm run build --if-present
       # npm test
