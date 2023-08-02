@@ -21,6 +21,7 @@ jobs:
       run: |
         echo "starting"
         cd ..
+        cd frontend
         pwd
       #  npm install
 # cd ../frontend
