@@ -4,7 +4,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET);
 exports.handler = async (event, context) => {
   try {
     const { quantity } = event;
-
     const paymentIntent = await stripe.paymentIntents.create({
         amount: quantity * 100,
         currency: "aud",
@@ -15,7 +14,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body:        {clientSecret: paymentIntent.client_secret}
+      body:{clientSecret: paymentIntent.client_secret}
     };
   } catch (error) {
     return {

@@ -136,7 +136,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     data() {
         return {
@@ -148,36 +148,38 @@ export default {
             console.info('Hello ${User}, you sure know how to press my buttons')
         },
         toggleTab(number) {
-            const me = document.getElementById('me')
-            const project = document.getElementById('project')
-            const fun = document.getElementById('fun')
-            const meTab = document.getElementById('meTab')
-            const projectTab = document.getElementById('projectTab')
-            const funTab = document.getElementById('funTab')
+            const me = document.getElementById('me') as HTMLElement
+            const project = document.getElementById('project') as HTMLElement
+            const fun = document.getElementById('fun') as HTMLElement
+            const meTab = document.getElementById('meTab') as HTMLElement
+            const projectTab = document.getElementById(
+                'projectTab'
+            ) as HTMLElement
+            const funTab = document.getElementById('funTab') as HTMLElement
             switch (number) {
                 case 1:
                     me.hidden = false
-                    meTab.ariaSelected = true
+                    meTab.ariaSelected = 'true'
                     // project.hidden = true
                     // projectTab.ariaSelected = false
                     fun.hidden = true
-                    funTab.ariaSelected = false
+                    funTab.ariaSelected = 'false'
                     break
                 case 2:
                     me.hidden = true
-                    meTab.ariaSelected = false
+                    meTab.ariaSelected = 'false'
                     // project.hidden = false
                     // projectTab.ariaSelected = true
                     fun.hidden = true
-                    funTab.ariaSelected = false
+                    funTab.ariaSelected = 'false'
                     break
                 case 3:
                     me.hidden = true
-                    meTab.ariaSelected = false
+                    meTab.ariaSelected = 'false'
                     // project.hidden = true
                     // projectTab.ariaSelected = false
                     fun.hidden = false
-                    funTab.ariaSelected = true
+                    funTab.ariaSelected = 'true'
                     break
 
                 default:

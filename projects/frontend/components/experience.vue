@@ -59,6 +59,6 @@
     max-height: 60ch;
 }
 </style>
-<script>
+<script lang="ts">
 export default {}
 </script>

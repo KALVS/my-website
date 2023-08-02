@@ -20,19 +20,28 @@
         <div v-if="showAlert">
             <Alert
                 @close="handleClose"
-                :alert="{ alertMessage: this.alertMessage }"
+                :alert="{ alertMessage: alertMessage }"
             />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import Alert from '../santa/alert.vue'
-import aws4 from 'aws4'
+import aws4, { Request } from 'aws4'
 
 import crypto from 'crypto'
+import Vue from 'vue'
 
-export default {
+import $stripe from 'nuxt-stripe-module'
+import {
+    StripeCardElement,
+    StripeElements,
+    StripeElementsOptionsClientSecret,
+    StripePaymentElement,
+} from '@stripe/stripe-js'
+
+export default Vue.extend({
     components: {
         Alert,
     },
@@ -49,12 +58,13 @@ export default {
 
     data() {
         return {
+            $stripe: typeof $stripe,
             stripe: {
-                paymentElement: null,
-                elements: null,
+                paymentElement: null as unknown as StripeElements,
+                elements: null as unknown as StripeElements,
             },
             showAlert: false,
-            alertMessage: '',
+            alertMessage: '' as string,
             options: {
                 appearance: {
                     theme: 'stripe',
@@ -153,9 +163,9 @@ export default {
                 // Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 3
                 // const elements = this.$stripe.elements(options)
 
-                const options = {
+                const options: StripeElementsOptionsClientSecret = {
                     clientSecret: this.clientSecret,
-                    appearance: appearance,
+                    // appearance: appearance,
                     // paymentMethodOrder: ['apple_pay', 'google_pay', 'card'],
                 }
                 // Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 3
@@ -178,7 +188,8 @@ export default {
             //     'payment'
             // )
 
-            const cardElement = await this.stripe.elements.getElement('card')
+            const cardElement: StripeCardElement =
+                this.stripe.elements.getElement('card') as StripeCardElement
             // const cardNumberElement = await this.stripe.elements.getElement(
             //     'cardNumber'
             // )
@@ -232,8 +243,10 @@ export default {
                                 method: 'POST',
                                 path: '/secretSanta/secretSanta',
                                 service: 'execute-api',
-                                url: 'https://6tcfaewsq8.execute-api.ap-southeast-2.amazonaws.com/secretSanta/secretSanta',
-                                body: { participants: this.participants },
+                                // url: 'https://6tcfaewsq8.execute-api.ap-southeast-2.amazonaws.com/secretSanta/secretSanta',
+                                body: {
+                                    participants: this.participants,
+                                },
                                 data: { participants: this.participants },
                                 region: region,
                                 headers: {
@@ -244,17 +257,18 @@ export default {
                                 },
                             }
 
-                            const signedRequest = new aws4.sign(request, {
+                            const signedRequest = aws4.sign(request as any, {
                                 accessKeyId: accessKey,
                                 secretAccessKey: secretKey,
-                                region: region,
-                                service: 'execute-api',
+                                // region: region,
+                                // service: 'execute-api',
                             })
+                            if (signedRequest.headers) {
+                                delete signedRequest.headers['Host']
+                                delete signedRequest.headers['Content-Length']
+                            }
 
-                            delete signedRequest.headers['Host']
-                            delete signedRequest.headers['Content-Length']
-
-                            this.$axios(signedRequest)
+                            this.$axios(signedRequest as any)
                                 .then((response) => {
                                     this.alertMessage =
                                         'Success! You should be receiving your text messages shortly!'
@@ -272,7 +286,7 @@ export default {
                 })
         },
     },
-}
+})
 </script>
 
 <style>

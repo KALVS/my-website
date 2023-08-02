@@ -15,7 +15,6 @@
             <div class="confirmedParticipantsWrapper">
                 <ul
                     role="listbox"
-                    v-bind="index"
                     :key="index"
                     v-for="(confirmed, index) in participants"
                 >
@@ -41,7 +40,7 @@
                     </li>
                 </ul>
             </div>
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="">
                 <div class="form-group">
                     <label for="name" class="form-label">Name: </label>
                     <input
@@ -92,7 +91,7 @@
 
                 <button
                     type="button"
-                    @click="validateAndAddParticipant(participants.length - 1)"
+                    @click="validateAndAddParticipant()"
                     class="add-button"
                 >
                     Add Participant
@@ -112,20 +111,23 @@
         <div v-if="showAlert">
             <Alert
                 @close="handleClose"
-                :alert="{ alertMessage: this.alertMessage }"
+                :alert="{ alertMessage: alertMessage }"
             />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import Index from '@/components/stripe/index.vue'
 import Alert from './alert.vue'
+import { ParticipantType, SignedRequest } from '../../contants/types'
 
 import crypto from 'crypto'
-import aws4 from 'aws4'
+import aws4, { Request } from 'aws4'
+import Vue from 'vue'
+import $axios, { AxiosOptions } from '@nuxtjs/axios'
 
-export default {
+export default Vue.extend({
     components: {
         Index,
         Alert,
@@ -133,15 +135,16 @@ export default {
     name: 'SecretSanta',
     data() {
         return {
-            showCheckout: false,
-            showAlert: false,
-            alertMessage: '',
-            quantity: 1,
-            participant: { name: '', number: '' },
-            participants: [],
-            nameTooltipHidden: true,
-            numberTooltipHidden: true,
-            clientSecret: null,
+            $axios: typeof $axios,
+            showCheckout: false as boolean,
+            showAlert: false as boolean,
+            alertMessage: '' as string,
+            quantity: 1 as number,
+            participant: { name: '', number: '' } as ParticipantType,
+            participants: [] as ParticipantType[],
+            nameTooltipHidden: true as boolean,
+            numberTooltipHidden: true as boolean,
+            clientSecret: '',
         }
     },
     methods: {
@@ -162,8 +165,11 @@ export default {
             this.numberTooltipHidden = true
         },
         validateAndAddParticipant() {
+            console.log('hey')
             if (this.participant.name !== '') {
+                console.log('name')
                 if (/^\d{10}$/.test(this.participant.number)) {
+                    console.log('number')
                     this.participants.push({
                         name: this.participant.name,
                         number: this.participant.number,
@@ -180,12 +186,15 @@ export default {
             }
         },
         updateQuanity() {
+            console.log(this.quantity)
             this.quantity = this.participants.length
+            console.log(this.quantity)
         },
         removeParticipant(index) {
             this.participants.splice(index, 1)
         },
         submit(event) {
+            console.log(this.quantity)
             event.preventDefault()
             if (this.participants.length === 0) {
                 this.alertMessage =
@@ -201,7 +210,7 @@ export default {
                 this.showAlert = true
                 return
             }
-            this.createPaymentIntent().then((this.showCheckout = true))
+            this.createPaymentIntent()
         },
         async createPaymentIntent() {
             const accessKey = process.env.AWS_ACCESS_KEY
@@ -220,31 +229,43 @@ export default {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Amz-Content-Sha256': this.calculateHash({
-                        participants: this.participants,
+                        quantity: this.quantity,
                     }),
                 },
             }
 
-            const signedRequest = new aws4.sign(request, {
+            const signedRequest = aws4.sign(request as any, {
                 accessKeyId: accessKey,
                 secretAccessKey: secretKey,
-                region: region,
-                service: 'execute-api',
+                // region: region,
+                // service: 'execute-api',
             })
+            if (signedRequest.headers) {
+                delete signedRequest.headers['Host']
+                delete signedRequest.headers['Content-Length']
+            }
 
-            delete signedRequest.headers['Host']
-            delete signedRequest.headers['Content-Length']
+            console.log(signedRequest)
+            this.$axios(signedRequest as any)
+                // await this.$axios({options: signedRequest} )
 
-            this.$axios(signedRequest)
+                //     'https://6tcfaewsq8.execute-api.ap-southeast-2.amazonaws.com/secretSanta/createPaymentIntent',
+                //     {}
+                // ).request(signedRequest)
+                //     // .post(
+                //     //     'https://6tcfaewsq8.execute-api.ap-southeast-2.amazonaws.com/secretSanta/createPaymentIntent',
+                //     //     signedRequest
+                //     // )
                 .then((response) => {
                     this.clientSecret = response.data.body.clientSecret
+                    this.showCheckout = true
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         },
     },
-}
+})
 </script>
 
 <style scoped>

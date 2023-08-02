@@ -44,11 +44,9 @@ export default {
       publishableKey: process.env.STRIPE_TEST_PKEY,
     }],
   ],
-  // plugins: [
-  //   { src: '~/plugins/vue-stripe.ts', ssr: false },//  { src: '~/plugins/myplugin.js', mode: 'client' }
-  // ],
   stripe: {
     publishableKey: process.env.STRIPE_TEST_SKEY,
     apiVersion: '2020-08-27'
   },
+  buildModules: ['@nuxt/typescript-build']
 };
