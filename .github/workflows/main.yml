@@ -16,13 +16,21 @@ jobs:
       matrix:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-    - name: Change directory and install dependencies
-      run: |
-        echo "starting"
-        cd ..
-        cd frontend
-        pwd
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+  # steps:
+  # - name: Change directory and install dependencies
+  #   run: |
+  #     echo "starting"
+  #     cd ..
+  #     cd frontend
+  #     pwd
       #  npm install
 # cd ../frontend
       # npm run build --if-present
