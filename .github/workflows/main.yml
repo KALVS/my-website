@@ -21,10 +21,10 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Navigate to Subdir
-        run: cd nuxt-node-Template/frontend
+      # - name: Navigate to Subdir
       
       - name: Install Dependencies
+        run: cd frontend
         run: npm install
 
     
