@@ -27,7 +27,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import home from '../components/home.vue'
 import education from '../components/education.vue'
 import extracurricular from '../components/extracurricular.vue'
@@ -35,8 +35,9 @@ import experience from '../components/experience.vue'
 import santaForm from '../components/santa/santaForm.vue'
 import technology from '../components/technology.vue'
 import index from '~/components/stripe/index.vue'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
     data() {
         return {
             educationEvent: false,
@@ -44,9 +45,7 @@ export default {
             experienceEvent: false,
             technologyEvent: false,
             secretSantaEvent: false,
-            // isClient: false,
-            // drops: [],
-            // matrix: '多年来我会来谁会发挥她锻炼的优势让学区长生不老想成为一个痛苦的丘比特逃离产生没有结果的快乐他们抛弃了那些应该为你的麻烦负责的人的一般职责',
+            matrix: '多年来我会来谁会发挥她锻炼的优势让学区长生不老想成为一个痛苦的丘比特逃离产生没有结果的快乐他们抛弃了那些应该为你的麻烦负责的人的一般职责',
             fontSize: 10,
             selected: null,
         }
@@ -61,7 +60,7 @@ export default {
         index,
     },
     methods: {
-        onInterestEvent: function (selected) {
+        onInterestEvent(selected): void {
             this.selected = selected
             this.extracurricularEvent = false
             this.educationEvent = false
@@ -93,25 +92,20 @@ export default {
 
     mounted() {
         // geting canvas by Boujjou Achraf
-        const c = document.getElementById('c')
-        const ctx = c.getContext('2d')
+        const c = document.getElementById('c') as HTMLCanvasElement
+        const ctx = c.getContext('2d') as CanvasRenderingContext2D
 
         // making the canvas full screen
         c.height = window.innerHeight
         c.width = window.innerWidth
 
-        // chinese characters - taken from the unicode charset
-        let matrix =
-            '多年来我会来谁会发挥她锻炼的优势让学区长生不老想成为一个痛苦的丘比特逃离产生没有结果的快乐他们抛弃了那些应该为你的麻烦负责的人的一般职责'
-        // eslint-disable-next-line max-len
-        // var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
         // converting the string into an array of single characters
-        matrix = matrix.split('')
+        const matrix = this.matrix.split('')
 
         const fontSize = 10
         const columns = c.width / fontSize // number of columns for the rain
         // an array of drops - one per column
-        const drops = []
+        const drops: number[] = []
         // x below is the x coordinate
         // 1 = y co-ordinate of the drop(same for every drop initially)
         for (let x = 0; x < columns; x += 1) drops[x] = Math.random() * 100
@@ -143,7 +137,7 @@ export default {
         }
         setInterval(draw, 33)
     },
-}
+})
 </script>
 
 <style>
@@ -157,9 +151,5 @@ body {
 #c {
     display: block;
     width: 100vw;
-    /* position: fixed;
-    margin: 0;
-    padding: 0;
-    z-index: -1; */
 }
 </style>

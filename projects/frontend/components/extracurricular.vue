@@ -38,6 +38,6 @@
     max-height: 600px;
 }
 </style>
-<script>
+<script lang="ts">
 export default {}
 </script>
