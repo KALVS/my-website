@@ -24,8 +24,9 @@ jobs:
       # - name: Navigate to Subdir
       
       - name: Install Dependencies
-        run: cd frontend
-        run: npm install
+        run: |
+          cd frontend
+          npm install
 
     
   # lint:
