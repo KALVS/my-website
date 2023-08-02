@@ -20,7 +20,7 @@ jobs:
     - run: echo "starting"
     - name: Change directory and install dependencies
       run: |
-        cd nuxt-node-template/projects/frontend
+        cd ./projects/frontend
         npm install
       # npm run build --if-present
       # npm test
