@@ -12,6 +12,7 @@ jobs:
   lint:
     name: Lint Code.
     runs-on: macos-13
+    env: working-directory: ./frontend
     strategy:
       matrix:
         node-version: [16.x]
@@ -20,7 +21,9 @@ jobs:
     - run: echo "starting"
     - name: Change directory and install dependencies
       run: |
-        cd frontend
+        ls -R
+      working-directory: ${{env.working-directory}}
+# cd ../frontend
         npm install
       # npm run build --if-present
       # npm test
