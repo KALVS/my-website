@@ -13,17 +13,25 @@ jobs:
     name: Lint Code.
     runs-on: macos-13
     steps:
-      - run: echo "Hello World"
+      - run: echo "Unleash the Lint Roller!"
+      - run: cd ../../projects/frontend
+      - run: npm i
   test:
     runs-on: macos-13
     name: Test Code.
     needs: lint
+    steps:
+      - run: echo "Hello World"
   build:
     runs-on: macos-13
     name: Build Code.
     needs: [lint, test]
+    steps:
+      - run: echo "Hello World"
   deploy:
     runs-on: macos-13
     name: Deploy changes
     needs: [lint, test, build]
+    steps:
+      - run: echo "Hello World"
 
