@@ -1,7 +1,7 @@
 <template>
   <div class="canvasWrapper">
     <canvas id="c"> </canvas>
-    <homeComponent @selectedradio="onInterestEvent($event)" />
+    <!-- <homeComponent @selectedradio="onInterestEvent($event)" />
     <educationComponent
       v-if="educationEvent != false"
       @selectedradio="onInterestEvent($event)"
@@ -23,7 +23,7 @@
     <santaForm
       v-if="secretSantaEvent != false"
       @selectedradio="onInterestEvent($event)"
-    />
+    /> -->
   </div>
 </template>
 
@@ -38,12 +38,12 @@ import santaForm from '../components/santa/santaForm.vue'
 
 export default Vue.extend({
   components: {
-    homeComponent,
-    educationComponent,
-    extracurricularComponent,
-    experienceComponent,
-    technologyComponent,
-    santaForm
+    // homeComponent,
+    // educationComponent,
+    // extracurricularComponent,
+    // experienceComponent,
+    // technologyComponent,
+    // santaForm
   },
   data() {
     return {

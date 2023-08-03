@@ -29,7 +29,7 @@ export default {
     '7.css/dist/7.css'
   ],
   modules: [
-    // '@nuxtjs/eslint-module',
+    '@nuxtjs/eslint-module',
     '@nuxtjs/axios',
     [
       'nuxt-stripe-module',
