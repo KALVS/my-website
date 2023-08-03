@@ -32,7 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Run Lint
-        run: npm run lint
+         run: |
+          cd frontend
+          npm run lint
     needs: npm-install
   #   runs-on: macos-13
   #   strategy:
