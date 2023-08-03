@@ -74,6 +74,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: production
+    # permission can be added at job level or workflow level    
+    permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -85,19 +89,20 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Set AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
+          role-session-name: AlexResume
           aws-region: ap-southeast-2
+
 
       - name: deploy
         run: |
           cd frontend
           npm install
           npm run build
-          npm run deploy
+          aws s3 sync ./dist s3://${{secrets.S3_BUCKET}} --delete
 
 
   #   runs-on: macos-13
