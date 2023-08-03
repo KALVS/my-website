@@ -7,7 +7,7 @@ on:
       - adding-pipeline
   push:
     branches:    
-      - adding-pipeline
+      - cide-pipeline
 jobs:
   npm-install:
     runs-on: ubuntu-latest
@@ -28,9 +28,11 @@ jobs:
           cd frontend
           npm install
 
-    
-  # lint:
-  #   name: Lint Code.
+  lint:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Run Lint
+      - run: npm lint
   #   runs-on: macos-13
   #   strategy:
   #     matrix:
