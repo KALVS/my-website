@@ -93,7 +93,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
-          role-session-name: AlexResume
           aws-region: us-east-2
 
       - name: Display Caller Identity Before Sync
