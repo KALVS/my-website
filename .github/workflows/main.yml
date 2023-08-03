@@ -69,7 +69,13 @@ jobs:
           cd frontend
           npm install
           npm run build
-          
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: deploy
+        run: npm deploy
 
 
   #   runs-on: macos-13
