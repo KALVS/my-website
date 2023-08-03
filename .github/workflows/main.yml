@@ -77,8 +77,8 @@ jobs:
     steps:
       - name: deploy
         run: |
-          npm run deploy
           cd frontend
+          npm run deploy
 
 
   #   runs-on: macos-13
