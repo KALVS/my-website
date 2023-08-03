@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Run Lint
-        run: npm lint
+        run: npm run lint
   #   runs-on: macos-13
   #   strategy:
   #     matrix:
