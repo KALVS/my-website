@@ -76,7 +76,7 @@ jobs:
     environment: production
     steps:
       - name: deploy
-        run: npm deploy
+        run: npm run deploy
 
 
   #   runs-on: macos-13
