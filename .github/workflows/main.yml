@@ -96,8 +96,8 @@ jobs:
           role-session-name: AlexResume
           aws-region: us-east-2
 
-      - name: List S3 Bucket Contents Before Sync
-        run: aws s3 ls s3://${{secrets.S3_BUCKET}}
+      - name: Display Caller Identity Before Sync
+        run: aws sts get-caller-identity
         
       - name: deploy
         run: |
