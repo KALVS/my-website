@@ -1,43 +1,50 @@
 <template>
   <div style="padding: 0px; margin: 0px">
-    <canvas id="c"> </canvas>
-    <home v-on:selectedradio="onInterestEvent($event)"></home>
+    <canvas id="c" />
+    <home @selectedradio="onInterestEvent($event)" />
     <education
-      v-on:selectedradio="onInterestEvent($event)"
       v-if="educationEvent != false"
-    ></education>
+      @selectedradio="onInterestEvent($event)"
+    />
     <extracurricular
-      v-on:selectedradio="onInterestEvent($event)"
       v-if="extracurricularEvent != false"
-    ></extracurricular>
+      @selectedradio="onInterestEvent($event)"
+    />
     <experience
-      v-on:selectedradio="onInterestEvent($event)"
       v-if="experienceEvent != false"
-    ></experience>
+      @selectedradio="onInterestEvent($event)"
+    />
 
     <technology
-      v-on:selectedradio="onInterestEvent($event)"
       v-if="technologyEvent != false"
-    ></technology>
+      @selectedradio="onInterestEvent($event)"
+    />
 
     <santaForm
-      v-on:selectedradio="onInterestEvent($event)"
       v-if="secretSantaEvent != false"
-    ></santaForm>
+      @selectedradio="onInterestEvent($event)"
+    />
   </div>
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import home from '../components/home.vue'
 import education from '../components/education.vue'
 import extracurricular from '../components/extracurricular.vue'
 import experience from '../components/experience.vue'
 import santaForm from '../components/santa/santaForm.vue'
 import technology from '../components/technology.vue'
-import index from '~/components/stripe/index.vue'
-import Vue from 'vue'
 
 export default Vue.extend({
+  components: {
+    home,
+    education,
+    experience,
+    extracurricular,
+    santaForm,
+    technology
+  },
   data() {
     return {
       educationEvent: false,
@@ -51,14 +58,56 @@ export default Vue.extend({
       selected: null
     }
   },
-  components: {
-    home,
-    education,
-    experience,
-    extracurricular,
-    santaForm,
-    technology,
-    index
+
+  mounted() {
+    // geting canvas by Boujjou Achraf
+    const c = document.getElementById('c') as HTMLCanvasElement
+    const ctx = c.getContext('2d') as CanvasRenderingContext2D
+
+    // making the canvas full screen
+    c.height = window.innerHeight
+    c.width = window.innerWidth
+
+    // converting the string into an array of single characters
+    const matrix = this.matrix.split('')
+
+    const fontSize = 10
+    const columns = c.width / fontSize // number of columns for the rain
+    // an array of drops - one per column
+    const drops: number[] = []
+    // x below is the x coordinate
+    // 1 = y co-ordinate of the drop(same for every drop initially)
+    for (let x = 0; x < columns; x += 1) {
+      drops[x] = Math.random() * 100
+    }
+
+    // drawing the characters
+    function draw() {
+      // Black BG for the canvas
+      // translucent BG to show trail
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
+      ctx.fillRect(0, 0, c.width, c.height)
+
+      ctx.fillStyle = '#0f0' // green text
+      ctx.font = `${fontSize}px arial`
+      // looping over drops
+      for (let i = 0; i < drops.length; i += 1) {
+        // a random chinese character to print
+        const text = matrix[Math.floor(Math.random() * matrix.length)]
+        // x = i*fontSize, y = value of drops[i]*fontSize
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+
+        // sending the drop back to the top randomly after it has crossed the screen
+        // adding a randomness to the reset to make the drops scattered on the Y axis
+        if (drops[i] * fontSize > c.height && Math.random() > 0.975) {
+          drops[i] = 0
+        }
+
+        // incrementing Y coordinate
+        drops[i] += 1
+      }
+    }
+    setInterval(draw, 33)
   },
   methods: {
     onInterestEvent(selected): void {
@@ -84,59 +133,12 @@ export default Vue.extend({
           break
         case 'secretSanta':
           this.secretSantaEvent = true
+          break
         default:
           // Default case, if none of the conditions match
           break
       }
     }
-  },
-
-  mounted() {
-    // geting canvas by Boujjou Achraf
-    const c = document.getElementById('c') as HTMLCanvasElement
-    const ctx = c.getContext('2d') as CanvasRenderingContext2D
-
-    // making the canvas full screen
-    c.height = window.innerHeight
-    c.width = window.innerWidth
-
-    // converting the string into an array of single characters
-    const matrix = this.matrix.split('')
-
-    const fontSize = 10
-    const columns = c.width / fontSize // number of columns for the rain
-    // an array of drops - one per column
-    const drops: number[] = []
-    // x below is the x coordinate
-    // 1 = y co-ordinate of the drop(same for every drop initially)
-    for (let x = 0; x < columns; x += 1) drops[x] = Math.random() * 100
-
-    // drawing the characters
-    function draw() {
-      // Black BG for the canvas
-      // translucent BG to show trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
-      ctx.fillRect(0, 0, c.width, c.height)
-
-      ctx.fillStyle = '#0f0' // green text
-      ctx.font = `${fontSize}px arial`
-      // looping over drops
-      for (let i = 0; i < drops.length; i += 1) {
-        // a random chinese character to print
-        const text = matrix[Math.floor(Math.random() * matrix.length)]
-        // x = i*fontSize, y = value of drops[i]*fontSize
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize)
-
-        // sending the drop back to the top randomly after it has crossed the screen
-        // adding a randomness to the reset to make the drops scattered on the Y axis
-        if (drops[i] * fontSize > c.height && Math.random() > 0.975)
-          drops[i] = 0
-
-        // incrementing Y coordinate
-        drops[i] += 1
-      }
-    }
-    setInterval(draw, 33)
   }
 })
 </script>

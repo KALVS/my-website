@@ -11,10 +11,17 @@ module.exports = {
       jsx: false
     }
   },
-  extends: ['@nuxtjs/eslint-config-typescript', 'plugin:prettier/recommended'],
-  plugins: ['prettier'],
+  extends: ['@nuxtjs/eslint-config-typescript'],
   rules: {
-    'prettier/prettier': 'error',
-    'space-before-function-paren': ['error', 'never']
+    'space-before-function-paren': ['error', 'never'],
+    'vue/html-self-closing': ['error', {
+      html: {
+        void: 'always',
+        normal: 'always',
+        component: 'always'
+      },
+      svg: 'always',
+      math: 'always'
+    }]
   }
 }
