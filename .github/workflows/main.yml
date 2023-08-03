@@ -97,6 +97,9 @@ jobs:
 
       - name: Display Caller Identity Before Sync
         run: aws sts get-caller-identity
+
+      - name: List buckets
+        run: aws s3 ls s3://${{secrets.S3_BUCKET}}
         
       - name: deploy
         run: |
