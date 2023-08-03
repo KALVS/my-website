@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:    
       - master
+  push:
+    branches:    
+      - cide-pipeline      
   
 jobs:
   npm-install:
