@@ -1,3 +1,8 @@
+.canvasWrapper {
+    padding: 0;
+    margin: 0;
+}
+
 .transparent::before,
 .transparent > .title-bar {
     background-color: transparent;
