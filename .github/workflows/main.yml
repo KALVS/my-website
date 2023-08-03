@@ -1,0 +1,126 @@
+name: learning-actions
+
+on:
+  pull_request:
+    branches:    
+      - master
+      - adding-pipeline
+  push:
+    branches:    
+      - adding-pipeline
+jobs:
+  npm-install:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setups Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # - name: Navigate to Subdir
+      
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm installnpx
+
+    
+  # lint:
+  #   name: Lint Code.
+  #   runs-on: macos-13
+  #   strategy:
+  #     matrix:
+  #       node-version: [16.x]
+  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+  #   steps:
+  #     - run: cd nuxt-node-Template/frontend
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #         cache: 'npm'
+  #     - run: npm ci
+    # - run: npm run build --if-present
+    # - run: npm test
+  # steps:
+  # - name: Change directory and install dependencies
+  #   run: |
+  #     echo "starting"
+  #     cd ..
+  #     cd frontend
+  #     pwd
+      #  npm install
+# cd ../frontend
+      # npm run build --if-present
+      # npm test
+  # - uses: actions/checkout@v3
+  # - name: Use Node.js ${{ matrix.node-version }}
+  #   uses: actions/setup-node@v3
+  #   with:
+  #     node-version: ${{ matrix.node-version }}
+  #     cache: 'npm'
+  # - run: npm ci
+  # - run: npm run build --if-present
+  # - run: npm test
+
+
+
+
+# - name: Set up Node.js
+#   uses: actions/setup-node@v2
+#   with:
+#     node-version: ${{ matrix.node-version }}
+# - name: Checkout code
+#   uses: actions/checkout@v3
+#   with:
+#     node-version: ${{ matrix.node-version }}
+#     cache: 'npm'
+# - name: Change directory and install dependencies
+#   run: |
+#     cd nuxt-node-template/projects/frontend
+#     npm ci
+
+  # npm run build --if-present
+  # npm test
+#  steps:
+#     - 
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#         cache: 'npm'
+#     - run: npm ci
+#     - run: npm run build --if-present
+#     - run: npm test
+    # steps:
+    #   - run: echo "Unleash the Lint Roller!"
+      # - run: npm ci
+      # - run: npm run build --if-present
+      # - run: npm test
+    
+      
+  # test:
+  #   runs-on: macos-13
+  #   name: Test Code.
+  #   needs: lint
+  #   steps:
+  #     - run: echo "Hello World"
+  # build:
+  #   runs-on: macos-13
+  #   name: Build Code.
+  #   needs: [lint, test]
+  #   steps:
+  #     - run: echo "Hello World"
+  # deploy:
+  #   runs-on: macos-13
+  #   name: Deploy changes
+  #   needs: [lint, test, build]
+  #   steps:
+  #     - run: echo "Hello World"
+
