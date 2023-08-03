@@ -33,6 +33,9 @@ jobs:
     needs: npm-install
 
     steps: 
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
       - name: Run Lint
         run: |
           npm run lint
