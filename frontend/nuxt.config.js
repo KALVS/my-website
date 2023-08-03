@@ -1,8 +1,3 @@
-/* eslint-disable no-console */
-// import "7.css/dist/7.css";
-
-// const APP_URL = process.env.APP_URL || 'http://localhost:4000';
-// const API_URL = process.env.API_URL || 'http://localhost:3000';
 if (!process.env.APP_URL || !process.env.API_URL) {
   console.warn('No API_URL or APP_URL provided in environment, using defaults')
 }
@@ -34,7 +29,7 @@ export default {
     '7.css/dist/7.css'
   ],
   modules: [
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     '@nuxtjs/axios',
     [
       'nuxt-stripe-module',
@@ -47,5 +42,5 @@ export default {
     publishableKey: process.env.STRIPE_TEST_SKEY,
     apiVersion: '2020-08-27'
   },
-  // buildModules: ['@nuxt/typescript-build']
+  buildModules: ['@nuxt/typescript-build']
 }
