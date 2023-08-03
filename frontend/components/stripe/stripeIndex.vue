@@ -66,31 +66,8 @@ export default Vue.extend({
     }
   },
   mounted() {
-    // this.createPaymentIntent()
     this.mountElement()
   },
-  created() {
-    // this.$stripe
-    //     .retrievePaymentIntent(this.clientSecret)
-    //     .then(({ paymentIntent }) => {
-    //         switch (paymentIntent.status) {
-    //             case 'succeeded':
-    //                 this.message = 'Payment succeeded!'
-    //                 break
-    //             case 'processing':
-    //                 this.message = 'Your payment is processing.'
-    //                 break
-    //             case 'requires_payment_method':
-    //                 this.message =
-    //                     'Your payment was not successful, please try again.'
-    //                 break
-    //             default:
-    //                 this.message = 'Something went wrong.'
-    //                 break
-    //         }
-    //     })
-  },
-
   methods: {
     calculateHash(data) {
       const hash = crypto.createHash('sha256')
@@ -121,42 +98,9 @@ export default Vue.extend({
     handleSubmit(e) {
       e.preventDefault()
 
-      // const paymentElement = await this.stripe.elements.getElement(
-      //     'payment'
-      // )
-
       const cardElement: StripeCardElement = this.stripe.elements.getElement(
         'card'
       ) as StripeCardElement
-      // const cardNumberElement = await this.stripe.elements.getElement(
-      //     'cardNumber'
-      // )
-      // const cardExpiryElement = await this.stripe.elements.getElement(
-      //     'cardExpiry'
-      // )
-      // const cardCvcElement = await this.stripe.elements.getElement(
-      //     'cardCvc'
-      // )
-
-      // const resp = await this.$stripe.confirmPayment(this.clientSecret, {
-      //     clientSecret: this.clientSecret,
-
-      //     payment_method: {
-      //         card: paymentElement,
-      //     },
-      //     redirect: 'if_required',
-      //     // confirmParams: {
-      //     //     // Make sure to change this to your payment completion page
-      //     //     return_url: 'http://localhost:3000',
-      //     // },
-      // })
-
-      // const resp1 = await this.$stripe.confirmPayment({
-      //     clientSecret: this.clientSecret,
-      //     payment_method: paymentElement,
-      //     redirect: 'if_required',
-      // })
-
       this.$stripe
         .confirmCardPayment(this.clientSecret, {
           payment_method: {

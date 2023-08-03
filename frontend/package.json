@@ -22,7 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.18.2",
-    "nuxt": "^2.15.7",
+    "nuxt": "^2.17.0",
     "nuxt-stripe-module": "^3.2.0",
     "stripe": "^12.6.0",
     "vue-session": "^1.0.0",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.9",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-28177393.984ce7c",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/types": "^2.17.1",
     "@nuxt/typescript-build": "^3.0.1",

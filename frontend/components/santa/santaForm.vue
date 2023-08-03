@@ -252,7 +252,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style>
 h2 {
   font-size: 16px;
   margin-bottom: 20px;
