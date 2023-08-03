@@ -101,6 +101,7 @@ jobs:
           npm install
           npm run build
           aws s3 sync ./dist s3://${{secrets.S3_BUCKET}} --delete
+          
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
