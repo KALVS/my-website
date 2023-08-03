@@ -35,7 +35,6 @@ jobs:
     steps: 
       - name: Run Lint
         run: |
-          cd frontend
           npm run lint
 
 
