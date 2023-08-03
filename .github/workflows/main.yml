@@ -95,9 +95,9 @@ jobs:
           role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
           aws-region: us-east-2
 
-
       - name: deploy
         run: |
+          echo ${{secrets.S3_BUCKET}}
           cd frontend
           npm install
           npm run build
