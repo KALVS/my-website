@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Run Lint
-         run: |
+        run: |
           cd frontend
           npm run lint
     needs: npm-install
