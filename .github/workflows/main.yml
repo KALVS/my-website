@@ -71,7 +71,7 @@ jobs:
   #         npm run build
 
   deployment:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     environment: production
     # permission can be added at job level or workflow level    
