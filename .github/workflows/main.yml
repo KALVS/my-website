@@ -5,7 +5,6 @@ on:
     branches:    
       - master
 
-  
 jobs:
   npm-install:
     runs-on: ubuntu-latest
