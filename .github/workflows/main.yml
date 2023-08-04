@@ -4,9 +4,9 @@ on:
   pull_request:
     branches:    
       - master
-  # push:
-  #   branches:    
-  #     - cicd-pipeline      
+  push:
+    branches:    
+      - cicd-pipeline      
   
 jobs:
   npm-install:
