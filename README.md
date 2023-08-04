@@ -41,7 +41,8 @@ This project utilizes the following technologies:
 
 - HTML5
 - CSS3
-- JavaScript
+- TypeScript
+- Vue.js
 
 ## Contributing
 
