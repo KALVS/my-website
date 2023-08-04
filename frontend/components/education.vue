@@ -5,50 +5,45 @@
         {{ 'Educational Activities' }}
       </div>
       <div class="title-bar-controls">
-        <button
-          aria-label="Close"
-          @click="$emit('selectedradio', false)"
-        />
+        <button aria-label="Close" @click="$emit('selectedradio', false)" />
       </div>
     </div>
     <div class="window-body">
-      <h5>
-        Bachelor of Information Technology Major: Computer Science
-        February 2017 -> November 2020
-      </h5>
-      During his time at QUT, Alex immersed himself in the Computer
-      Science & Entrepreneurship ecosystems. This exposed him to running
-      student clubs, working with startups and participating in a wide
-      array of university programs including:
-      <br />
-      <h5>Disrupting Law 2018</h5>
-      - A hackathon between IT & Law students where the aim is to solve an
-      issue in the legal industry using technology.
-      <h5>Maurice Blackburn Hackathon 2018</h5>
-      - Alex and his team designed a tool that improved access to justice
-      for unfair dismissal claims.
-      <br />
+      <span v-for="(edu, index) in education.content" :key="index">
+        <h5>
+          {{ edu.heading }}
+          {{ edu.duration }}
+        </h5>
+        {{ edu.text }}
+        <br />
+      </span>
     </div>
   </div>
 </template>
 <script lang="ts">
-export default {
-  name: 'EducationComponent'
-}
+import { education } from '~/contants/copy'
 
+export default {
+  name: 'EducationComponent',
+  data() {
+    return {
+      education
+    }
+  }
+}
 </script>
 <style scoped>
 .transparent::before,
 .transparent > .title-bar {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .window {
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    max-height: 600px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  max-height: 600px;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div class="window glass transparent" style="">
     <div class="title-bar">
-      <div class="title-bar-text" />
+      <div class="title-bar-text">
+        {{ home.tabs.about }}
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Minimize" />
-        <!-- <button aria-label="Maximize"></button>
-        <button aria-label="Restore"></button> -->
         <button aria-label="Close" />
       </div>
     </div>
@@ -18,17 +18,8 @@
           aria-selected="true"
           @click="toggleTab(1)"
         >
-          About me
+          {{ home.tabs.about }}
         </button>
-        <!-- <button
-                    role="tab"
-                    id="projectTab"
-                    aria-controls="project"
-                    @click="toggleTab(2)"
-                    aria-selected="false"
-                >
-                    Projects
-                </button> -->
         <button
           id="funTab"
           role="tab"
@@ -36,29 +27,31 @@
           aria-selected="false"
           @click="toggleTab(3)"
         >
-          Fun stuff
+          {{ home.tabs.fun }}
         </button>
       </menu>
       <article id="me" role="tabpanel">
         <div id="wrapper">
           <div id="left">
             <h4 style="margin: 0">
-              {{ 'Alex Holm' }}
+              {{ home.about.name }}
             </h4>
             <h5 style="margin: 0">
-              {{ 'Software Engineer' }}
+              {{ home.about.role }}
             </h5>
             <h5 style="margin: 0">
-              <a href="http://linkedin.com/in/alex-holm-4b10a4175">LinkedIn</a>
+              <a :href="home.about.linkedIn.url">{{
+                home.about.linkedIn.text
+              }}</a>
             </h5>
             <h5 style="margin: 0">
-              <a href="http://github.com/KALVS"> Github </a>
+              <a :href="home.about.github.url">{{ home.about.github.text }}</a>
             </h5>
           </div>
           <div id="right">
             <img
               src="../assets/pictures/PictureofAlex.jpg"
-              alt="A picture of Alex"
+              :alt="home.pictureAlt"
               class="profilePicture"
               height="100px"
             />
@@ -66,78 +59,74 @@
         </div>
         <div id="links">
           <fieldset>
-            <legend>What are you interested in knowing?</legend>
+            <legend>{{ home.about.intro.name }}</legend>
             <div class="field-row">
               <button
-                id="inputRadioButton"
+                :id="home.links.education"
                 @click="$emit('selectedradio', 'education')"
               >
-                Education
+                {{ home.links.education }}
               </button>
             </div>
             <div class="field-row">
               <button
-                id="inputRadioButton"
+                :id="home.links.extracurricular"
                 @click="$emit('selectedradio', 'extracurricular')"
               >
-                Extracurricular
+                {{ home.links.extracurricular }}
               </button>
             </div>
             <div class="field-row">
               <button
-                id="inputRadioButton"
+                :id="home.links.experience"
                 @click="$emit('selectedradio', 'experience')"
               >
-                Experience
+                {{ home.links.experience }}
               </button>
             </div>
             <div class="field-row">
               <button
-                id="inputRadioButton"
+                :id="home.links.technology"
                 @click="$emit('selectedradio', 'technology')"
               >
-                Technologies
+                {{ home.links.technology }}
               </button>
             </div>
           </fieldset>
         </div>
       </article>
-
-      <!-- <article role="tabpanel" hidden id="project">
-                // eslint-disable-next-line max-len
-                <p>Alex enjoys 3d printing, travelling and is eager to learn</p>
-                <p></p>
-            </article> -->
-
       <article id="fun" role="tabpanel" hidden>
         <fieldset>
           <div class="field-row">
             <button
-              id="secretSanta"
+              :id="home.fun.secretSanta"
               @click="$emit('selectedradio', 'secretSanta')"
             >
-              Secret Santa as a service
+              {{ home.fun.secretSanta }}
             </button>
           </div>
         </fieldset>
       </article>
       <section class="field-row" style="justify-content: flex-end">
         <button>
-          <a class="mailLink" href="mailto:alexholmsoftware@gmail.com">
-            Okay
+          <a :href="'mailto:' + home.contact.email" class="mailLink">
+            {{ home.contact.okay }}
           </a>
         </button>
-        <button>Cancel</button>
+        <button>{{ home.contact.cancel }}</button>
       </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { home } from '../contants/copy'
+
 export default {
   name: 'HomeComponent',
   data() {
     return {
+      home,
       selected: false
     }
   },
@@ -151,24 +140,18 @@ export default {
         case 1:
           me.hidden = false
           meTab.ariaSelected = 'true'
-          // project.hidden = true
-          // projectTab.ariaSelected = false
           fun.hidden = true
           funTab.ariaSelected = 'false'
           break
         case 2:
           me.hidden = true
           meTab.ariaSelected = 'false'
-          // project.hidden = false
-          // projectTab.ariaSelected = true
           fun.hidden = true
           funTab.ariaSelected = 'false'
           break
         case 3:
           me.hidden = true
           meTab.ariaSelected = 'false'
-          // project.hidden = true
-          // projectTab.ariaSelected = false
           fun.hidden = false
           funTab.ariaSelected = 'true'
           break
