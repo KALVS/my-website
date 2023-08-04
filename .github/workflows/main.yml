@@ -4,10 +4,8 @@ on:
   pull_request:
     branches:    
       - master
-      - adding-pipeline
-  push:
-    branches:    
-      - cide-pipeline
+
+  
 jobs:
   npm-install:
     runs-on: ubuntu-latest
@@ -71,7 +69,7 @@ jobs:
           npm run build
 
   deployment:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     environment: production
     # permission can be added at job level or workflow level    
@@ -95,12 +93,6 @@ jobs:
           role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
           aws-region: us-east-2
 
-      - name: Display Caller Identity Before Sync
-        run: aws sts get-caller-identity
-
-      - name: List buckets
-        run: aws s3 ls s3://${{secrets.S3_BUCKET}}
-        
       - name: deploy
         run: |
           cd frontend
@@ -108,97 +100,7 @@ jobs:
           npm run build
           aws s3 sync ./dist s3://${{secrets.S3_BUCKET}} --delete
 
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION }} --paths '/*'
 
-  #   runs-on: macos-13
-  #   strategy:
-  #     matrix:
-  #       node-version: [16.x]
-  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-  #   steps:
-  #     - run: cd nuxt-node-Template/frontend
-  #     - uses: actions/checkout@v3
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         cache: 'npm'
-  #     - run: npm ci
-    # - run: npm run build --if-present
-    # - run: npm test
-  # steps:
-  # - name: Change directory and install dependencies
-  #   run: |
-  #     echo "starting"
-  #     cd ..
-  #     cd frontend
-  #     pwd
-      #  npm install
-# cd ../frontend
-      # npm run build --if-present
-      # npm test
-  # - uses: actions/checkout@v3
-  # - name: Use Node.js ${{ matrix.node-version }}
-  #   uses: actions/setup-node@v3
-  #   with:
-  #     node-version: ${{ matrix.node-version }}
-  #     cache: 'npm'
-  # - run: npm ci
-  # - run: npm run build --if-present
-  # - run: npm test
-
-
-
-
-# - name: Set up Node.js
-#   uses: actions/setup-node@v2
-#   with:
-#     node-version: ${{ matrix.node-version }}
-# - name: Checkout code
-#   uses: actions/checkout@v3
-#   with:
-#     node-version: ${{ matrix.node-version }}
-#     cache: 'npm'
-# - name: Change directory and install dependencies
-#   run: |
-#     cd nuxt-node-template/projects/frontend
-#     npm ci
-
-  # npm run build --if-present
-  # npm test
-#  steps:
-#     - 
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
-#     - run: npm ci
-#     - run: npm run build --if-present
-#     - run: npm test
-    # steps:
-    #   - run: echo "Unleash the Lint Roller!"
-      # - run: npm ci
-      # - run: npm run build --if-present
-      # - run: npm test
-    
-      
-  # test:
-  #   runs-on: macos-13
-  #   name: Test Code.
-  #   needs: lint
-  #   steps:
-  #     - run: echo "Hello World"
-  # build:
-  #   runs-on: macos-13
-  #   name: Build Code.
-  #   needs: [lint, test]
-  #   steps:
-  #     - run: echo "Hello World"
-  # deploy:
-  #   runs-on: macos-13
-  #   name: Deploy changes
-  #   needs: [lint, test, build]
-  #   steps:
-  #     - run: echo "Hello World"
 
