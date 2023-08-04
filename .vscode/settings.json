@@ -1,4 +1,29 @@
 {
     "git.ignoreLimitWarning": true,
-    "nuxt.isNuxtApp": false
+    "nuxt.isNuxtApp": false,
+    "prettier.singleQuote": true,
+    "prettier.vueIndentScriptAndStyle": true,
+    "prettier.configPath": "frontend/.prettierrc",
+    "editor.formatOnSave": true,
+     "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+     },
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "vetur.useWorkspaceDependencies": true,
+    "eslint.lintTask.enable": true,
+    "eslint.codeAction.disableRuleComment": {},
+     "[jsonc]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+     },
+    "vetur.completion.scaffoldSnippetSources": {
+    "workspace": "💼",
+    "user": "🗒️",
+    "vetur": "✌"
+     },
+    "vue.inlayHints.optionsWrapper": false,
+    "git.confirmSync": false,
+    "prettier.trailingComma": "none",
+     "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+     },   
 }
