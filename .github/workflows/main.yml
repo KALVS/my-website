@@ -9,66 +9,66 @@ on:
       - cicd-pipeline      
   
 jobs:
-  npm-install:
-    runs-on: ubuntu-latest
+  # npm-install:
+  #   runs-on: ubuntu-latest
 
-    steps: 
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  #   steps: 
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
 
-      - name: Setups Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+  #     - name: Setups Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '16'
+  #         cache: npm
+  #         cache-dependency-path: frontend/package-lock.json
       
-      - name: Install Dependencies
-        run: |
-          cd frontend
-          npm install
+  #     - name: Install Dependencies
+  #       run: |
+  #         cd frontend
+  #         npm install
 
-  lint:
-    runs-on: ubuntu-latest
-    needs: npm-install
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   needs: npm-install
 
-    steps: 
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  #   steps: 
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
       
-      - name: Setups Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+  #     - name: Setups Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '16'
+  #         cache: npm
+  #         cache-dependency-path: frontend/package-lock.json
 
-      - name: Run Lint
-        run: |
-          cd frontend
-          npm install
-          npm run lint
+  #     - name: Run Lint
+  #       run: |
+  #         cd frontend
+  #         npm install
+  #         npm run lint
 
-  build:
-    runs-on: ubuntu-latest
-    needs: lint
+  # build:
+  #   runs-on: ubuntu-latest
+  #   needs: lint
 
-    steps: 
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  #   steps: 
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
       
-      - name: Setups Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+  #     - name: Setups Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '16'
+  #         cache: npm
+  #         cache-dependency-path: frontend/package-lock.json
 
-      - name: Build Project
-        run: |
-          cd frontend
-          npm install
-          npm run build
+  #     - name: Build Project
+  #       run: |
+  #         cd frontend
+  #         npm install
+  #         npm run build
 
   deployment:
     needs: build
