@@ -9,7 +9,7 @@
       <div id="card-errors" role="alert" />
 
       <button id="submit" class="pay-button" @click="handleSubmit($event)">
-        Pay Now
+        {{ stripeCopy.submitButton }}
       </button>
     </form>
 
@@ -33,6 +33,7 @@ import {
   StripeElementsOptionsClientSecret
 } from '@stripe/stripe-js'
 import Alert from '../santa/alert.vue'
+import { stripe } from '~/contants/copy'
 
 export default Vue.extend({
   name: 'StripeComponent',
@@ -52,6 +53,7 @@ export default Vue.extend({
 
   data() {
     return {
+      stripeCopy: stripe,
       $stripe: typeof $stripe,
       stripe: {
         paymentElement: null as unknown as StripeElements,

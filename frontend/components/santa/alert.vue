@@ -2,7 +2,7 @@
   <div class="window glass transparent">
     <div class="title-bar">
       <div class="title-bar-text">
-        {{ 'Alert!' }}
+        {{ alertContent.title }}
       </div>
       <div class="title-bar-controls">
         <button aria-label="Close" @click="closeComponent" />
@@ -12,7 +12,7 @@
       {{ alertMessage }}
       <section class="field-row" style="justify-content: flex-end">
         <button @click="closeComponent">
-          {{ 'Okay' }}
+          {{ alertContent.okay }}
         </button>
       </section>
     </div>
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { alert } from '~/contants/copy'
 
 export default Vue.extend({
   name: 'AlertModal',
@@ -28,6 +29,11 @@ export default Vue.extend({
     alert: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      alertContent: alert
     }
   },
   computed: {

@@ -2,16 +2,16 @@
   <div class="window glass transparent">
     <div class="title-bar">
       <div class="title-bar-text">
-        {{ 'Secret Santa as a Service' }}
+        {{ secretSanta.titleBarText }}
       </div>
       <div class="title-bar-controls">
         <button aria-label="Close" @click="$emit('selectedradio', false)" />
       </div>
     </div>
     <div class="window-body">
-      <h4>Secret Santa Form</h4>
+      <h4>{{ secretSanta.secretSantaForm.title }}</h4>
       <p v-if="participants.length !== 0">
-        {{ 'Participants:' }}
+        {{ secretSanta.secretSantaForm.participants }}
       </p>
       <div class="confirmedParticipantsWrapper">
         <ul
@@ -23,17 +23,14 @@
             <div class="container">
               <div class="participant-info">
                 <p><strong>Name:</strong> {{ confirmed.name }}</p>
-                <p>
-                  <strong>Number:</strong>
-                  {{ confirmed.number }}
-                </p>
+                <p><strong>Number:</strong> {{ confirmed.number }}</p>
               </div>
               <button
                 type="button"
                 class="remove-button"
                 @click="removeParticipant(index)"
               >
-                Remove
+                {{ secretSanta.secretSantaForm.removeButton }}
               </button>
             </div>
           </li>
@@ -41,7 +38,9 @@
       </div>
       <form @submit.prevent="">
         <div class="form-group">
-          <label for="name" class="form-label">Name: </label>
+          <label for="name" class="form-label">{{
+            secretSanta.secretSantaForm.nameLabel
+          }}</label>
           <input
             id="name"
             v-model="participant.name"
@@ -54,10 +53,12 @@
             @keydown="hideNameTooltip"
           />
           <div id="nameTooltipId" role="tooltip" :hidden="nameTooltipHidden">
-            Invalid name.
+            {{ secretSanta.secretSantaForm.invalidName }}
           </div>
 
-          <label :for="'number'" class="form-label"> Mobile Number: </label>
+          <label :for="'number'" class="form-label">{{
+            secretSanta.secretSantaForm.phoneLabem
+          }}</label>
           <div>
             <input
               id="number"
@@ -77,7 +78,7 @@
               role="tooltip"
               :hidden="numberTooltipHidden"
             >
-              Invalid phone number.
+              {{ secretSanta.secretSantaForm.invalidPhone }}
             </div>
           </div>
         </div>
@@ -87,11 +88,11 @@
           class="add-button"
           @click="validateAndAddParticipant()"
         >
-          Add Participant
+          {{ secretSanta.secretSantaForm.addButton }}
         </button>
 
         <button @click="submit($event)">
-          {{ 'Submit' }}
+          {{ secretSanta.secretSantaForm.submitButton }}
         </button>
 
         <div v-if="clientSecret">
@@ -117,6 +118,7 @@ import Vue from 'vue'
 import $axios from '@nuxtjs/axios'
 import { ParticipantType } from '../../contants/types'
 import Alert from './alert.vue'
+import { secretSanta } from '~/contants/copy'
 import Index from '@/components/stripe/index.vue'
 
 export default Vue.extend({
@@ -127,6 +129,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      secretSanta,
       $axios: typeof $axios,
       showCheckout: false as boolean,
       showAlert: false as boolean,
