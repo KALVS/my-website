@@ -28,8 +28,8 @@ My Website is a platform designed to provide insights into my background, projec
 To run this project locally, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/KALVS/my-website.git`
-2. Navigate to the project directory: `cd my-website`
-3. Open the `index.html` file in a web browser.
+2. Navigate to the project directory: `cd my-website/frontend`
+3. Run `npm i && npm run dev` 
 
 ## Usage
 
