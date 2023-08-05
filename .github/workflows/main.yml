@@ -115,7 +115,7 @@ jobs:
       - name: Zip project
         run: |
           cd projects/stripeIntegration
-          zip stripe.zip index.js
+          zip stripe.zip stripeIntegration
 
       - name: Upload Project
         run: |
