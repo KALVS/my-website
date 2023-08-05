@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-
 if (!process.env.APP_URL || !process.env.API_URL) {
   console.warn('No API_URL or APP_URL provided in environment, using defaults')
 }

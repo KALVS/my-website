@@ -5,7 +5,6 @@ on:
     branches:    
       - master
 
-  
 jobs:
   npm-install:
     runs-on: ubuntu-latest
@@ -26,7 +25,7 @@ jobs:
           cd frontend
           npm install
 
-  lint:
+  Lint:
     runs-on: ubuntu-latest
     needs: npm-install
 
@@ -47,7 +46,7 @@ jobs:
           npm install
           npm run lint
 
-  build:
+  Build:
     runs-on: ubuntu-latest
     needs: lint
 
@@ -68,8 +67,8 @@ jobs:
           npm install
           npm run build
 
-  deployment:
-    # needs: build
+  Deploy-S3:
+    needs: build
     runs-on: ubuntu-latest
     environment: production
     # permission can be added at job level or workflow level    
@@ -87,13 +86,13 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      - name: configure aws credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
           aws-region: us-east-2
 
-      - name: deploy
+      - name: Deploy to S3
         run: |
           cd frontend
           npm install
@@ -102,5 +101,35 @@ jobs:
 
       - name: Invalidate CloudFront
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION }} --paths '/*'
+      
+  Deploy-Lambda:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
+      - name: Zip project
+        run: |
+          cd projects
+          zip stripe stripeIntegration/*
+          ls
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
+          aws-region: ap-southeast-2
+
+      - name: Upload Project
+        run: |
+          cd projects
+          ls
+          aws lambda update-function-code \
+          --function-name createPaymentIntent \
+          --zip-file fileb://stripe.zip
+      
 
