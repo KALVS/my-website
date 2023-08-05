@@ -115,7 +115,7 @@ jobs:
       - name: Zip project
         run: |
           cd projects
-          zip stripe stripeIntegration
+          zip stripe stripeIntegration/*
           ls
 
       - name: Configure AWS Credentials
@@ -129,7 +129,7 @@ jobs:
           cd projects
           ls
           aws lambda update-function-code \
-          --function-name createPaymentIntent/* \
+          --function-name createPaymentIntent \
           --zip-file fileb://stripe.zip
       
 
