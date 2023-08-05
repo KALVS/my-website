@@ -129,7 +129,7 @@ jobs:
           cd projects
           ls
           aws lambda update-function-code \
-          --function-name createPaymentIntent \
+          --function-name createPaymentIntent/* \
           --zip-file fileb://stripe.zip
       
 
