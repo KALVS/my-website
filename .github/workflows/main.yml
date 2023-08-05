@@ -115,10 +115,12 @@ jobs:
       - name: Zip project
         run: |
           cd projects
-          zip stripe.zip stripeIntegration
+          zip stripe stripeIntegration
+          ls
 
       - name: Upload Project
         run: |
+          ls
           aws lambda update-function-code \
           --function-name createPaymentIntent \
           --zip-file fileb://stripe.zip
