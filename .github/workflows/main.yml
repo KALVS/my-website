@@ -67,7 +67,7 @@ jobs:
           npm install
           npm run build
 
-  Deploy S3:
+  Deploy-S3:
     needs: build
     runs-on: ubuntu-latest
     environment: production
