@@ -120,9 +120,10 @@ jobs:
 
       - name: Upload Project
         run: |
+          cd projects
           ls
-        # aws lambda update-function-code \
-        # --function-name createPaymentIntent \
-        # --zip-file fileb://stripe.zip
+          aws lambda update-function-code \
+          --function-name createPaymentIntent \
+          --zip-file fileb://stripe.zip
       
 
