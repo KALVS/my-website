@@ -45,5 +45,6 @@ export default {
   transform: translate(-50%, -50%);
   width: 80vw;
   max-height: 60ch;
+  overflow-y: scroll;
 }
 </style>
