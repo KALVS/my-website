@@ -116,6 +116,9 @@ jobs:
         run: |
           cd projects/stripeIntegration
           npm i
+          cd node_modules
+          ls
+          cd ..
           cd ..
           zip stripe stripeIntegration/*
           
