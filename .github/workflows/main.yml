@@ -115,9 +115,9 @@ jobs:
       - name: Zip project
         run: |
           cd projects
+          npm i
           zip stripe stripeIntegration/*
-          ls
-
+          
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
