@@ -12,7 +12,10 @@
       <span v-for="(exp, index) in experience.content" :key="index">
         <h5>{{ exp.heading }}</h5>
         <strong>{{ exp.role }} {{ exp.duration }}</strong>
-        {{ exp.text }}
+        <br />
+        <p>
+          {{ exp.text }}
+        </p>
       </span>
     </div>
   </div>

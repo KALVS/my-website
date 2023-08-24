@@ -67,9 +67,15 @@ export const experience = {
   title: 'Experience',
   content: [
     {
+      heading: 'Australia Post',
+      role: 'Software Engineer',
+      duration: 'January 2023 -> Now',
+      text: "During his time in this role, Alex truly thrived, dedicating himself to mastering CSS and acquiring proficiency in React. He played a pivotal part in the Consumer Dashboard Uplift Project, demonstrating his commitment by publishing a React Function Component to npm, which other teams could readily utilize. Alex's dedication to excellence was evident as he championed the implementation of AAA WCAG standards for the dashboard, specifically for parcel tracking. Moreover, his contributions extended to the AP component library, underscoring his collaborative spirit and proactive engagement within the team. Through his exceptional craftsmanship and his embodiment of the company culture, Alex consistently surpassed expectations."
+    },
+    {
       heading: 'iNSPIRETEK',
-      role: 'Web Developer',
-      duration: 'January 2021 -> Now',
+      role: 'Software Engineer',
+      duration: 'January 2021 -> December 2022',
       text: "In this role Alex is part of the engineering team that builds and maintains iNSPIRETEK's sports analytics mobile application and data analytics pipeline. He primarily uses Angular and Typescript to build a responsive mobile app that communicates with a backend hosted in AWS."
     },
     {
