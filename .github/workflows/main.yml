@@ -120,7 +120,7 @@ jobs:
           ls
           cd ..
           cd ..
-          zip stripe stripeIntegration/*
+          zip -r stripe stripeIntegration/*
           
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
