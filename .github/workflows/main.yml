@@ -114,7 +114,7 @@ jobs:
       
       - name: Zip project
         run: |
-          cd projects
+          cd projects/stripeIntegration
           npm i
           zip stripe stripeIntegration/*
           
