@@ -1,5 +1,5 @@
 import { Stripe } from 'stripe'
-const stripe = new Stripe(process.env.SKEY)
+const stripe = new Stripe(process.env.STRIPE_SKEY)
 
 export const handler = async (event, context) => {
   try {
