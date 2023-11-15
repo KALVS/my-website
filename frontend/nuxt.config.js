@@ -22,12 +22,8 @@ export default {
         content: 'width=device-width,initial-scale=1.0'
       }
     ],
-    link: [
-      { rel: 'stylesheet', href: '@/assets/global.css' }
-    ],
-    script: [
-      { src: 'https://js.stripe.com/v3' }
-    ]
+    link: [{ rel: 'stylesheet', href: '@/assets/global.css' }],
+    script: [{ src: 'https://js.stripe.com/v3' }]
   },
   css: [
     '@/assets/global.css',
@@ -36,14 +32,16 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
-    ['nuxt-stripe-module', {
-      publishableKey: process.env.STRIPE_TEST_PKEY
-    }]
+    [
+      'nuxt-stripe-module',
+      {
+        publishableKey: process.env.STRIPE_PKEY
+      }
+    ]
   ],
   stripe: {
-    publishableKey: process.env.STRIPE_TEST_SKEY,
+    publishableKey: process.env.STRIPE_PKEY,
     apiVersion: '2020-08-27'
   },
-  buildModules: ['@nuxt/typescript-build',
-    '@nuxtjs/eslint-module']
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/eslint-module']
 }

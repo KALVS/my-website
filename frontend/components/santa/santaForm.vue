@@ -231,10 +231,10 @@ export default Vue.extend({
         delete signedRequest.headers.Host
         delete signedRequest.headers['Content-Length']
       }
-
       this.$axios(signedRequest as any)
         .then((response) => {
-          this.clientSecret = response.data.body.clientSecret
+          const resp = JSON.parse(response.data.body)
+          this.clientSecret = resp.clientSecret
           this.showCheckout = true
         })
         .catch((error) => {

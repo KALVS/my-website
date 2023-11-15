@@ -12,7 +12,10 @@
       <span v-for="(exp, index) in experience.content" :key="index">
         <h5>{{ exp.heading }}</h5>
         <strong>{{ exp.role }} {{ exp.duration }}</strong>
-        {{ exp.text }}
+        <br />
+        <p>
+          {{ exp.text }}
+        </p>
       </span>
     </div>
   </div>
@@ -42,5 +45,6 @@ export default {
   transform: translate(-50%, -50%);
   width: 80vw;
   max-height: 60ch;
+  overflow-y: scroll;
 }
 </style>
