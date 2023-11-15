@@ -202,6 +202,7 @@ export default Vue.extend({
       this.createPaymentIntent()
     },
     createPaymentIntent() {
+      this.showCheckout = true
       const accessKey = process.env.AWS_ACCESS_KEY
       const secretKey = process.env.AWS_SECRET_KEY
       const region = 'ap-southeast-2'
@@ -231,10 +232,10 @@ export default Vue.extend({
         delete signedRequest.headers.Host
         delete signedRequest.headers['Content-Length']
       }
-
       this.$axios(signedRequest as any)
         .then((response) => {
-          this.clientSecret = response.data.body.clientSecret
+          const resp = JSON.parse(response.data.body)
+          this.clientSecret = resp.clientSecret
           this.showCheckout = true
         })
         .catch((error) => {
