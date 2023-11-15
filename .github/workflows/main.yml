@@ -118,12 +118,12 @@ jobs:
           npm i
           zip -r ../stripe.zip *
           cd ..
+
       - name: Zip Secret Santa
         run: |
           cd projects/secretSanta
           zip -r ../secretSanta.zip *
           cd ..
-
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
