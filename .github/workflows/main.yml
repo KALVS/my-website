@@ -116,8 +116,8 @@ jobs:
         run: |
           cd projects/createPaymentIntent
           npm i
+          zip -r ../stripe.zip *
           cd ..
-          zip -r stripe createPaymentIntent/*
 
 
       - name: Configure AWS Credentials
