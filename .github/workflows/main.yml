@@ -140,7 +140,7 @@ jobs:
 
       - name: Upload Secret Santa
         run: |
-          cd projects/secretSanta
+          cd projects
           aws lambda update-function-code \
           --function-name secretSanta \
           --zip-file fileb://secretSanta.zip
