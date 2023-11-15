@@ -112,7 +112,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
       
-      - name: Zip project
+      - name: Zip Stripe payment intent
         run: |
           cd projects/createPaymentIntent
           npm i
@@ -126,11 +126,17 @@ jobs:
           role-to-assume: ${{secrets.ROLE_TO_ASSUME}}
           aws-region: ap-southeast-2
 
-      - name: Upload Project
+      - name: Upload Stripe payment intent
         run: |
           cd projects
           aws lambda update-function-code \
           --function-name createPaymentIntent \
           --zip-file fileb://stripe.zip
+
+      - name: Upload Secret Santa
+        run: |
+          aws lambda update-function-code \
+          --function-name secretSanta \
+          --zip-file fileb://index.js
       
 
