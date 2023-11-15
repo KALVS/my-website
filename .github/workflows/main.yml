@@ -118,6 +118,11 @@ jobs:
           npm i
           zip -r ../stripe.zip *
           cd ..
+      - name: Zip Secret Santa
+        run: |
+          cd projects/secretSanta
+          zip -r ../secretSanta.zip *
+          cd ..
 
 
       - name: Configure AWS Credentials
@@ -138,6 +143,6 @@ jobs:
           cd projects/secretSanta
           aws lambda update-function-code \
           --function-name secretSanta \
-          --zip-file fileb://index.js
+          --zip-file fileb://secretSanta.zip
       
 
