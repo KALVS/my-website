@@ -116,7 +116,7 @@ jobs:
         run: |
           cd projects/createPaymentIntent
           npm i
-          cd ../..
+          cd ..
           zip -r stripe createPaymentIntent/*
           zip stripe.zip index.js
 
