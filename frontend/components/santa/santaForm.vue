@@ -202,7 +202,6 @@ export default Vue.extend({
       this.createPaymentIntent()
     },
     createPaymentIntent() {
-      this.showCheckout = true
       const accessKey = process.env.AWS_ACCESS_KEY
       const secretKey = process.env.AWS_SECRET_KEY
       const region = 'ap-southeast-2'
