@@ -118,7 +118,6 @@ jobs:
           npm i
           cd ..
           zip -r stripe createPaymentIntent/*
-          zip stripe.zip index.js
 
 
       - name: Configure AWS Credentials
