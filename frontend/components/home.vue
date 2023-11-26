@@ -105,6 +105,11 @@
               {{ home.fun.secretSanta }}
             </button>
           </div>
+          <div class="field-row">
+            <button id="solitaire" @click="$emit('selectedradio', 'solitaire')">
+              solitaire
+            </button>
+          </div>
         </fieldset>
       </article>
       <section class="field-row" style="justify-content: flex-end">

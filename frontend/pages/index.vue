@@ -24,6 +24,9 @@
       v-if="secretSantaEvent != false"
       @selectedradio="onInterestEvent($event)"
     />
+    <solitaire />
+    <!-- v-if="solitaireEvent != false"
+    @selectedradio="onInterestEvent($event)" -->
   </div>
 </template>
 
@@ -35,6 +38,7 @@ import extracurricular from '../components/extracurricular.vue'
 import experience from '../components/experience.vue'
 import santaForm from '../components/santa/santaForm.vue'
 import technology from '../components/technology.vue'
+import solitaire from '../components/solitaire/solitaire.vue'
 
 export default Vue.extend({
   components: {
@@ -43,7 +47,8 @@ export default Vue.extend({
     experience,
     extracurricular,
     santaForm,
-    technology
+    technology,
+    solitaire
   },
   data() {
     return {
@@ -52,6 +57,7 @@ export default Vue.extend({
       experienceEvent: false,
       technologyEvent: false,
       secretSantaEvent: false,
+      solitaireEvent: false,
       matrix:
         '多年来我会来谁会发挥她锻炼的优势让学区长生不老想成为一个痛苦的丘比特逃离产生没有结果的快乐他们抛弃了那些应该为你的麻烦负责的人的一般职责',
       fontSize: 10,
@@ -117,6 +123,7 @@ export default Vue.extend({
       this.experienceEvent = false
       this.technologyEvent = false
       this.secretSantaEvent = false
+      this.solitaireEvent = false
 
       switch (selected) {
         case 'education':
@@ -133,6 +140,9 @@ export default Vue.extend({
           break
         case 'secretSanta':
           this.secretSantaEvent = true
+          break
+        case 'solitaire':
+          this.solitaireEvent = true
           break
         default:
           // Default case, if none of the conditions match

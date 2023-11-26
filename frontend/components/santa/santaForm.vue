@@ -143,14 +143,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    calculateHash(data) {
-      const hash = crypto.createHash('sha256')
-      hash.update(JSON.stringify(data))
-      return hash.digest('hex')
-    },
     handleClose() {
-      // Perform any actions you need when the component is closed
-      // For example, hide the component or reset some data
       this.showAlert = false
     },
     hideNameTooltip() {
@@ -158,6 +151,17 @@ export default Vue.extend({
     },
     hideNumberTooltip() {
       this.numberTooltipHidden = true
+    },
+    updateQuanity() {
+      this.quantity = this.participants.length
+    },
+    removeParticipant(index) {
+      this.participants.splice(index, 1)
+    },
+    calculateHash(data) {
+      const hash = crypto.createHash('sha256')
+      hash.update(JSON.stringify(data))
+      return hash.digest('hex')
     },
     validateAndAddParticipant() {
       if (this.participant.name !== '') {
@@ -176,12 +180,6 @@ export default Vue.extend({
       } else {
         this.nameTooltipHidden = false
       }
-    },
-    updateQuanity() {
-      this.quantity = this.participants.length
-    },
-    removeParticipant(index) {
-      this.participants.splice(index, 1)
     },
     submit(event) {
       event.preventDefault()
