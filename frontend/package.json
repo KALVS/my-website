@@ -25,6 +25,7 @@
     "nuxt-stripe-module": "^3.2.0",
     "stripe": "^12.6.0",
     "vue-session": "^1.0.0",
+    "vue-smooth-dnd": "^0.8.1",
     "vue-stripe-js": "^1.0.1"
   },
   "devDependencies": {
