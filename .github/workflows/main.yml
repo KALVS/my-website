@@ -1,4 +1,4 @@
-name: learning-actions
+name: AlexHolmSoftware
 
 on:
   pull_request:
@@ -70,11 +70,10 @@ jobs:
   Deploy-S3:
     needs: build
     runs-on: ubuntu-latest
-    environment: production
-    # permission can be added at job level or workflow level    
+    environment: production 
     permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read    # This is required for actions/checkout
+      id-token: write
+      contents: read
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
