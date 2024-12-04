@@ -43,8 +43,7 @@ export default {
   ],
   stripe: {
     publishableKey:
-      'pk_live_51N7DUbA5NSCLB33rSNbmAlVqevYKtNj8tdu502XpAm9pOq0ZoyJaQ7BT4qH7JmauWEbhQgX3Yg88vk34RbD6qpLY005xDDBwjG',
-    apiVersion: '2020-08-27'
+      'pk_live_51N7DUbA5NSCLB33rSNbmAlVqevYKtNj8tdu502XpAm9pOq0ZoyJaQ7BT4qH7JmauWEbhQgX3Yg88vk34RbD6qpLY005xDDBwjG'
   },
   publicRuntimeConfig: {
     stripe: {
