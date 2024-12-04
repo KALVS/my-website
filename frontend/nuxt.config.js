@@ -11,7 +11,8 @@ export default {
   ssr: false, // Set the mode to 'spa' for Single-Page Application
   env: {
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
-    AWS_SECRET_KEY: process.env.AWS_SECRET_KEY
+    AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
+    STRIPE_PKEY: process.env.STRIPE_PKEY
   },
   head: {
     title: 'Alex Holm',
